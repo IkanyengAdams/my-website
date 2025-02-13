@@ -1,0 +1,65 @@
+.safety-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #0078d4;
+    margin-bottom: 20px;
+  }
+  
+  .safety-content {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+  
+  .safety-content ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .safety-content li {
+    margin-bottom: 10px;
+  }
+  
+  .safety-sections {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+  
+  .safety-section {
+    width: 45%;
+    padding: 20px;
+    background-color: #f0f8ff;
+    border-radius: 10px;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 1.8rem;
+    color: green;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .section-content {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+ .section-icon {
+  color: #07d400; /* Blue color */
+  font-size: 1.8rem; /* Increase icon size */
+  margin-right: 12px; /* Add spacing */
+}
+
+.safety-section li svg {
+  color: #0078d4; /* Blue color */
+  font-size: 1.5rem; /* Make icons slightly larger */
+  margin-right: 10px; /* Add space between icon and text */
+}
+
+  
+  .multi-icons {
+    color: #0078d4
+  }
