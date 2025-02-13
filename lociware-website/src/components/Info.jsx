@@ -65,13 +65,13 @@ export default function Info() {
       {/* Image Cards Section */}
       <div className="info-cards">
         <div className="info-card">
-          <img src="/image8.jpg" alt="Service Image 1" />
+          <img src="/image8.jpg" alt="A picture of a car" />
           <h3>Reliable Service</h3>
           <p>Our fleet of vehicles guarantees a comfortable and stylish travel experience, ensuring reliability no matter your destination.</p>
         </div>
 
         <div className="info-card">
-          <img src="/loci3.png" alt="Service Image 2" />
+          <img src="/loci3.png" alt="A car" />
           <h3>Customer Satisfaction</h3>
           <p>We take pride in providing timely and efficient transportation services, earning the trust of our customers. Experience the difference with our commitment to excellence.</p>
         </div>

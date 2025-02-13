@@ -26,11 +26,11 @@ export default function Navbar({ navbarRef, infoRef, servicesRef, safetyRef, con
       </div>
       {/* Navigation links */}
       <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
-        <li><a onClick={() => scrollToSection(navbarRef)}>Home</a></li>
-        <li><a onClick={() => scrollToSection(infoRef)}>About Us</a></li> {/* Scrolls to Info */}
-        <li><a onClick={() => scrollToSection(servicesRef)}>Services</a></li>
-        <li><a onClick={() => scrollToSection(safetyRef)}>Safety</a></li>
-        <li><a onClick={() => scrollToSection(contactRef)}>Contact Us</a></li>
+        <li><a href="/" onClick={() => scrollToSection(navbarRef)}>Home</a></li>
+        <li><a href="/About Us" onClick={() => scrollToSection(infoRef)}>About Us</a></li> {/* Scrolls to Info */}
+        <li><a href="/Services" onClick={() => scrollToSection(servicesRef)}>Services</a></li>
+        <li><a href="/Safety" onClick={() => scrollToSection(safetyRef)}>Safety</a></li>
+        <li><a href="/Contact Us" onClick={() => scrollToSection(contactRef)}>Contact Us</a></li>
         <li><a href="#">News</a></li>
       </ul>
     </nav>

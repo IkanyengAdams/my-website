@@ -32,12 +32,12 @@ function App() {
         contactRef={contactRef}
       />
       <div ref={navbarRef}><Hero /></div>
-      <div ref={contactRef}><Contact /></div>
-      <div ref={infoRef}><Info /></div> {/* About Us should now scroll to this */}
+      <div ref={infoRef}><Info /></div>
       <AboutUs /> 
-      <Values />
       <div ref={servicesRef}><Services /></div>
+      <div ref={contactRef}><Contact /></div>
       <div ref={safetyRef}><Safety /></div>
+      <Values />
       <TeamMembers />
       <CustomerFeedback />
       <Footer />
