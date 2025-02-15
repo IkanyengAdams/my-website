@@ -96,7 +96,28 @@ export default function Info() {
         </div>
       </div>
 
-      
+      {/* New Vision & Mission Section */}
+<div className="vision-mission-container">
+  <motion.div 
+    className="vision-card" 
+    initial={{ opacity: 0, x: -100 }} 
+    animate={{ opacity: 1, x: 0 }} 
+    transition={{ duration: 1 }}
+  >
+    <h3>Our Vision</h3>
+    <p>To provide first and foremost safe and quality services in a professional manner that exceeds the expectations of our esteemed customers.</p>
+  </motion.div>
+
+  <motion.div 
+    className="mission-card" 
+    initial={{ opacity: 0, x: 100 }} 
+    animate={{ opacity: 1, x: 0 }} 
+    transition={{ duration: 1 }}
+  >
+    <h3>Our Mission</h3>
+    <p>To build long term relationships with our customers and clients and provide exceptional customer services by pursuing business through innovation and advanced safety culture.</p>
+  </motion.div>
+</div>
     </section>
   );
 }
