@@ -33,11 +33,11 @@ function App() {
       />
       <div ref={navbarRef}><Hero /></div>
       <div ref={infoRef}><Info /></div>
+      <Values />
       <AboutUs /> 
       <div ref={servicesRef}><Services /></div>
       <div ref={contactRef}><Contact /></div>
       <div ref={safetyRef}><Safety /></div>
-      <Values />
       <TeamMembers />
       <CustomerFeedback />
       <Footer />
