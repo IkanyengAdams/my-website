@@ -1,9 +1,12 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 export default function Values() {
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { triggerOnce: false, margin: "-100px" });
+
   return (
-    <section className="values">
+    <section className="values" ref={ref}>
       <div className="values-card">
         {/* Image */}
         <div className="values-image-container">
@@ -33,7 +36,7 @@ export default function Values() {
         <motion.div
           className="big-circle"
           initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
+          animate={isInView ? { scale: 1 } : { scale: 0 }}
           transition={{ duration: 0.5 }}
         >
           Values
@@ -45,8 +48,8 @@ export default function Values() {
             key={index}
             className="small-circle"
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 * (index + 1) }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ delay: 0.2 * (index + 1), duration: 0.5 }}
           >
             {value}
           </motion.div>
