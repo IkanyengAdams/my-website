@@ -1063,3 +1063,123 @@ p {
 .service-card:hover .service-overlay {
   background: rgba(0, 0, 0, 0.6);
 }
+
+.values {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 80px; /* Extra space below */
+}
+
+.values-card {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  align-items: center;
+  max-width: 900px;
+  margin-bottom: 50px;
+}
+
+.values-image-container {
+  flex: 1;
+}
+
+.values-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.values-text {
+  flex: 2;
+  text-align: left;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Circular Layout */
+.values-circle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin-top: 50px;
+}
+
+/* Big Circle */
+.big-circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: #007bff; /* Blue color */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  position: absolute;
+  z-index: 2;
+}
+
+/* Small Circles */
+.small-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #007bff; /* Blue color */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+  position: absolute;
+}
+
+/* Positioning Small Circles Around Big Circle */
+.small-circle:nth-child(2) { top: 8%; left: 50%; transform: translateX(-50%); }  /* Top */
+.small-circle:nth-child(3) { top: 40%; left: 70%; transform: translateY(-50%); }  /* Right */
+.small-circle:nth-child(4) { bottom: 7%; left: 40%; transform: translateX(-50%); }  /* Bottom */
+.small-circle:nth-child(5) { top: 50%; left: 10%; transform: translateY(-50%); }  /* Left */
+.small-circle:nth-child(6) { bottom: 60%; right: 60%; }  /* Diagonal Bottom Right */
+
+@media (max-width: 768px) {
+  .values-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .values-text {
+    text-align: center;
+  }
+
+  .values-circle-container {
+    width: 320px;
+    height: 320px;
+  }
+
+  .big-circle {
+    width: 120px;
+    height: 120px;
+  }
+
+  .small-circle {
+    width: 80px;
+    height: 80px;
+    font-size: 0.8rem;
+  }
+}
