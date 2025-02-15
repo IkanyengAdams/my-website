@@ -233,7 +233,7 @@ a {
 .contact-link {
   text-decoration: none;
   color: #333;
-  font-weight: 600;
+  
 }
 
 .contact-link:hover {
@@ -749,13 +749,7 @@ p {
   margin-bottom: 20px;
 }
 
-.vision-card {
-  background: linear-gradient(90deg, #0000ff, #00ff00); /* Blue to Green gradient */
-}
 
-.mission-card {
-  background: linear-gradient(90deg, #00ff00, #0000ff); /* Green to Blue gradient */
-}
 
 h3 {
   font-size: 1.5rem;
@@ -1118,68 +1112,90 @@ p {
   margin-top: 50px;
 }
 
+/* Circle Container */
+.values-circle-container {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Big Circle */
 .big-circle {
   width: 140px;
   height: 140px;
   border-radius: 50%;
-  background: #007bff; /* Blue color */
+  background: linear-gradient(145deg, #007bff, #0056b3);
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: bold;
   position: absolute;
   z-index: 2;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3), 
+              inset -2px -2px 5px rgba(255, 255, 255, 0.2), 
+              inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.big-circle:hover {
+  transform: scale(1.05);
 }
 
 /* Small Circles */
 .small-circle {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
-  background: #007bff; /* Blue color */
+  background: linear-gradient(145deg, #007bff, #0056b3);
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: bold;
   position: absolute;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3), 
+              inset -2px -2px 5px rgba(255, 255, 255, 0.2), 
+              inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
-/* Positioning Small Circles Around Big Circle */
-.small-circle:nth-child(2) { top: 8%; left: 50%; transform: translateX(-50%); }  /* Top */
-.small-circle:nth-child(3) { top: 40%; left: 70%; transform: translateY(-50%); }  /* Right */
-.small-circle:nth-child(4) { bottom: 7%; left: 40%; transform: translateX(-50%); }  /* Bottom */
-.small-circle:nth-child(5) { top: 50%; left: 10%; transform: translateY(-50%); }  /* Left */
-.small-circle:nth-child(6) { bottom: 60%; right: 60%; }  /* Diagonal Bottom Right */
+.small-circle:hover {
+  transform: scale(1.1);
+}
 
+/* Positioning Small Circles Closer to the Big Circle */
+.small-circle:nth-child(2) { top: -1%; left: 35%; transform: translateX(-50%); }  /* Top */
+.small-circle:nth-child(3) { top: 73%; left: 58%; transform: translateY(-50%); }  /* Right */
+.small-circle:nth-child(4) { bottom: 0%; left: 18%; transform: translateX(-50%); }  /* Bottom */
+.small-circle:nth-child(5) { top: 35%; left: -1%; transform: translateY(-50%); }  /* Left */
+.small-circle:nth-child(6) { top: 33%; left: 73%; }  /* Diagonal Top Right */
+.small-circle:nth-child(7) { bottom: 15%; left: 75%; }  /* Diagonal Bottom Right */
+.small-circle:nth-child(8) { bottom: 15%; right: 75%; }  /* Diagonal Bottom Left */
+.small-circle:nth-child(9) { top: 15%; right: 75%; }  /* Diagonal Top Left */
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  .values-card {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .values-text {
-    text-align: center;
-  }
-
   .values-circle-container {
-    width: 320px;
-    height: 320px;
+    width: 280px;
+    height: 280px;
   }
 
   .big-circle {
     width: 120px;
     height: 120px;
+    font-size: 1.2rem;
   }
 
   .small-circle {
-    width: 80px;
-    height: 80px;
-    font-size: 0.8rem;
+    width: 75px;
+    height: 75px;
+    font-size: 0.75rem;
   }
 }
