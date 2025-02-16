@@ -37,6 +37,7 @@ html, body {
 
 .logo {
   flex: 0 1 auto;
+  cursor: pointer;
 }
 
 .logo-img {
@@ -53,6 +54,7 @@ html, body {
   list-style: none;
   margin-left: auto;
   cursor: pointer;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
 .nav-links li a {
@@ -72,34 +74,33 @@ html, body {
   gap: 5px;
   justify-content: center;
   align-items: center;
-  width: 25px;
-  height: 20px;
+  width: 30px;
+  height: 25px;
 }
 
 .hamburger .bar {
-  width: 25px;
-  height: 3px;
+  width: 30px;
+  height: 4px;
   background-color: #333;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
 }
 
-/* Hamburger animation */
-.hamburger .bar.open:nth-child(1) {
+.hamburger.open .bar:nth-child(1) {
   transform: rotate(45deg) translateY(8px);
 }
 
-.hamburger .bar.open:nth-child(2) {
+.hamburger.open .bar:nth-child(2) {
   opacity: 0;
 }
 
-.hamburger .bar.open:nth-child(3) {
+.hamburger.open .bar:nth-child(3) {
   transform: rotate(-45deg) translateY(-8px);
 }
 
 /* Responsive Navbar for Small Screens */
 @media (max-width: 780px) {
   .nav-links {
-    display: none; /* Hide nav links on mobile */
+    display: none;
     flex-direction: column;
     position: absolute;
     top: 60px;
@@ -109,10 +110,14 @@ html, body {
     padding: 10px 0;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+    opacity: 0;
+    transform: translateY(-20px);
   }
 
   .nav-links.active {
-    display: flex; /* Show nav links when active */
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .nav-links li {
@@ -127,7 +132,7 @@ html, body {
   }
 
   .hamburger {
-    display: flex; /* Show hamburger menu */
+    display: flex;
   }
 }
 
@@ -565,6 +570,12 @@ p {
   gap: 20px; /* Adds spacing between cards */
 }
 
+.info-cards {
+  display: flex;
+  justify-content: space-between; /* This will keep them side by side on larger screens */
+  gap: 20px; /* Optional, add some space between the cards */
+}
+
 .info-card {
   background-color: #fff;
   border-radius: 10px;
@@ -599,6 +610,19 @@ p {
 .info-card p {
   font-size: 1rem;
   color: #777;
+}
+
+/* Media Query for Small Screens */
+@media (max-width: 768px) {
+  .info-cards {
+    flex-direction: column; /* Stack the cards vertically on small screens */
+    align-items: center; /* Center the cards */
+  }
+
+  .info-card {
+    width: 100%; /* Make each card take full width */
+    margin-bottom: 20px; /* Optional, add space between cards */
+  }
 }
 
 .footer {
@@ -719,6 +743,17 @@ p {
   align-items: center;
   gap: 0.8rem;
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-features {
+    grid-template-columns: 2fr; /* Stack features in a single column on small screens */
+    margin: auto; /* Center the features section */
+    padding: 70px; /* Remove any left padding */
+    max-width: 600px; /* Optional: Control max width for better centering */
+  }
+}
+
 
 .feature-icon {
   font-size: 1.5rem;
@@ -879,15 +914,22 @@ p {
 /* Responsive Design */
 @media (max-width: 768px) {
   .values-card {
-    flex-direction: column;
+    flex-direction: column; /* Stack image and text vertically */
     text-align: center;
     padding: 20px;
   }
 
+  .values-image-container {
+    width: 100%; /* Make image container take full width */
+    margin-bottom: 20px; /* Optional: add space below the image */
+  }
+
   .values-text {
     padding: 0;
+    width: 100%; /* Make text container take full width */
   }
 }
+
 
 /* Team Members Section */
 .team-members {
