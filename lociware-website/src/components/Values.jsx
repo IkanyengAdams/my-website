@@ -43,7 +43,7 @@ export default function Values() {
         </motion.div>
 
         {/* Small Circles */}
-        {["Batho Pele (Putting People First)", "Safety", "Integrity", "Honesty", "Respect"].map((value, index) => (
+        {["Botho Pele", "Safety", "Integrity", "Honesty", "Respect"].map((value, index) => (
           <motion.div
             key={index}
             className="small-circle"
