@@ -99,6 +99,20 @@ export default function CustomerFeedback() {
           </motion.div>
         </div>
       </motion.div>
+
+      {/* Big Card with Image */}
+      <motion.div
+          className="big-feedback-card"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          <img src="/big-image.jpg" alt="Happy Customers" className="big-card-image" />
+          <div className="big-card-overlay">
+            <h3>Trusted by Thousands of Customers</h3>
+            <p>Join our growing community of satisfied clients and experience the best service in the industry.</p>
+          </div>
+        </motion.div>
     </section>
   );
 }
