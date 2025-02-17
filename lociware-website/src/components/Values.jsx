@@ -8,14 +8,13 @@ export default function Values() {
   return (
     <section className="values" ref={ref}>
       <div className="values-card">
-        {/* Image */}
-        <div className="values-image-container">
-          <img src="/loci1.png" alt="Our Values" className="values-image" />
-        </div>
-
         {/* Text Content */}
         <div className="values-text">
           <h2>Our Values</h2>
+          {/* Image appears here on small screens */}
+          <div className="values-image-container mobile-only">
+            <img src="/loci1.png" alt="Our Values" className="values-image" />
+          </div>
           <p>
             Where <strong>PROFESSIONALISM</strong> meets <strong>COMMITMENT</strong>, we create an exceptional
             experience for you. Our experienced staff and highly professional chauffeurs are committed to
@@ -27,6 +26,11 @@ export default function Values() {
             occasion, and we’ll make the ride flawless, whether close to home or in a new city. We are always there,
             ensuring you receive the best service possible.
           </p>
+        </div>
+
+        {/* Image - Hidden on mobile, visible on desktop */}
+        <div className="values-image-container desktop-only">
+          <img src="/loci1.png" alt="Our Values" className="values-image" />
         </div>
       </div>
 
