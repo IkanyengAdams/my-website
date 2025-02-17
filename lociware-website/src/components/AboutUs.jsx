@@ -7,20 +7,18 @@ export default function AboutUs() {
     <section className="about-us">
       <div className="about-us-container">
         
-        {/* Left Image with Fade-in Animation */}
-        <motion.div
-          className="about-image"
-          initial={{ opacity: 0, x: -100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-        >
-          <img src="/loci2.png" alt="About Us" />
-        </motion.div>
-
-        {/* Right Content */}
+        {/* Right Content (Title + Text) */}
         <div className="about-content">
           <h2>NEED A SAFE TRANSFER?</h2>
+          <motion.div
+            className="about-image"
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+          >
+            <img src="/loci2.png" alt="About Us" />
+          </motion.div>
           <h3>YOU'VE COME TO THE RIGHT PLACE!</h3>
           <p>
             Formed in June 2016 in partnership with Shell South Africa, IDF Capital, and Barlow World Siyakhula, 

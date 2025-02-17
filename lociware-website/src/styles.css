@@ -475,10 +475,24 @@ p {
   color: #555;
 }
 
+/* ✅ Responsive Design */
 @media (max-width: 768px) {
-  .about-card {
+  .about-us-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* ✅ Ensure Image Appears Below Title */
+  .about-image {
+    order: -1;
     width: 100%;
-    margin-bottom: 30px;  /* Ensures more space on smaller screens */
+  }
+
+  /* ✅ Keep Features Section in Two Columns */
+  .about-features {
+    grid-template-columns: repeat(2, 1fr); /* Stays 2 per row */
+    max-width: 400px;
+    margin: auto;
   }
 }
 
@@ -677,6 +691,7 @@ p {
 }
 
 
+/* About Us Section */
 .about-us {
   display: flex;
   justify-content: center;
@@ -685,9 +700,10 @@ p {
   background-color: #f9f9f9;
 }
 
+/* Layout for Larger Screens */
 .about-us-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: row;  /* Image on the left, text on the right */
   align-items: center;
   max-width: 1100px;
   width: 100%;
@@ -701,7 +717,6 @@ p {
 
 .about-image img {
   width: 100%;
-  margin-left: -200px;
   max-width: 500px;
   border-radius: 10px;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
@@ -734,7 +749,7 @@ p {
 /* Features Section (Two Columns Layout) */
 .about-features {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);  /* 2-column layout */
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   margin-top: 2rem;
 }
@@ -747,12 +762,20 @@ p {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .about-features {
-    grid-template-columns: 2fr; /* Stack features in a single column on small screens */
-    margin: auto; /* Center the features section */
-    padding: 70px; /* Remove any left padding */
-    max-width: 600px; /* Optional: Control max width for better centering */
+  .about-us-container {
+    flex-direction: column; /* Stack image and text */
+    text-align: center;
   }
+
+  .about-image img {
+    max-width: 90%;
+    margin-bottom: 20px; /* Adds spacing between image and text */
+  }
+
+  .about-content {
+    text-align: center; /* Center-aligns text */
+  }
+
 }
 
 
@@ -904,6 +927,7 @@ p {
   color: #0078d4;
 }
 
+/* Paragraph Styling */
 .values-text p {
   font-size: 18px;
   line-height: 1.6;
@@ -915,7 +939,7 @@ p {
   color: #0078d4;
 }
 
-/* Responsive Design */
+/* 🔹 Responsive Design (Mobile: max-width 768px) */
 @media (max-width: 768px) {
   .values-card {
     flex-direction: column; /* Stack elements vertically */
@@ -923,37 +947,32 @@ p {
     padding: 20px;
   }
 
-  .values-text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-  }
-
+  /* Ensure the title is on its own row */
   .values-text h2 {
-    order: -2; /* Ensure the title stays at the top */
+    order: -2; /* Title stays at the top */
+    margin-bottom: 15px;
   }
 
+  /* Ensure the image moves directly below the title */
   .values-image-container {
-    order: -1; /* Move image right below the title */
+    order: -1; /* Image is second */
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 
+  /* Make the image slightly larger */
   .values-image {
-    max-width: 100%;
+    max-width: 90%;
     height: auto;
   }
 
+  /* Ensure paragraph text stays below the image */
   .values-text p {
-    order: 1; /* Ensure paragraphs remain below the image */
+    order: 1; /* Text remains at the bottom */
   }
 }
-
-
 
 /* Team Members Section */
 .team-members {
