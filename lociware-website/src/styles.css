@@ -1190,8 +1190,8 @@ section.values {
 /* Grid Layout: 2 images on top, 3 on bottom */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: auto auto;
+  grid-template-columns: repeat(2, 1fr); /* Two items per row for bigger images */
+  grid-template-rows: repeat(2, 1fr);   /* Two rows */
   gap: 20px;
   justify-content: center;
   align-items: center;
@@ -1201,7 +1201,7 @@ section.values {
 
 /* Make the third item span full width */
 .service-card:nth-child(3) {
-  grid-column: span 2;
+  grid-column: span 2; /* Second row has 3 images, one of them takes the full width */
 }
 
 /* Service Card Styles */
@@ -1224,24 +1224,26 @@ section.values {
   transform: scale(1.05);
 }
 
-/* Overlay with Title */
+/* Overlay with Title on Top of Image */
 .service-overlay {
   position: absolute;
-  bottom: 0;
+  top: 10px; /* Title on top of the image */
   left: 0;
   width: 100%;
   background: rgba(0, 0, 0, 0.4); 
   display: flex;
-  align-items: center;
   justify-content: center;
-  opacity: 1; 
+  align-items: center;
+  opacity: 1;
   transition: opacity 0.3s ease-in-out;
+  padding: 5px 0;
 }
 
 .service-overlay h3 {
   color: white;
   font-size: 20px;
   font-weight: bold;
+  font-family: 'Cursive', sans-serif; /* Cursive font style */
   text-align: center;
   padding: 10px;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
@@ -1251,19 +1253,6 @@ section.values {
   background: rgba(0, 0, 0, 0.6);
 }
 
-/* Slider Dots */
-.slick-dots {
-  bottom: 10px;
-}
-
-.slick-dots li button:before {
-  font-size: 12px;
-  color: white;
-}
-
-.slick-dots li.slick-active button:before {
-  color: #f39c12;
-}
 
 /* Custom Arrows */
 .slick-arrow {
@@ -1281,13 +1270,32 @@ section.values {
   color: #f39c12;
 }
 
-.next-arrow {
-  right: 10px;
+/* Positioning arrows on images */
+.slick-prev {
+  left: 10px; /* Align left arrow to the left of the image */
 }
 
-.prev-arrow {
-  left: 10px;
+.slick-next {
+  right: 10px; /* Align right arrow to the right of the image */
 }
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr; /* Stack images vertically on small screens */
+  }
+
+  .service-card:nth-child(3) {
+    grid-column: span 1; /* Stack images when it's a single column */
+  }
+
+  .service-overlay h3 {
+    font-size: 18px; /* Adjust font size on smaller screens */
+  }
+}
+
+
 
 .values {
   display: flex;

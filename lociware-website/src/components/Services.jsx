@@ -27,7 +27,6 @@ const services = [
 
 export default function Services() {
   const sliderSettings = {
-    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -35,8 +34,9 @@ export default function Services() {
     autoplay: true,
     autoplaySpeed: 3000,
     fade: true,
-    arrows: false
+    arrows: true,  // Change this to 'true' to enable arrows
   };
+  
 
   return (
     <section className="services-section">
