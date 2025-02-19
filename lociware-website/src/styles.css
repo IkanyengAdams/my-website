@@ -422,7 +422,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 15px;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 .social-icons svg {
@@ -917,10 +917,15 @@ p {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   overflow: hidden;
-  max-width: 1100px;
   width: 100%;
-  padding: 30px;
-  gap: 20px;
+  max-width: 1200px; /* Increased max-width for larger cards */
+  padding: 50px 40px; /* Increased padding for more spacious card */
+  gap: 30px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.values-card:hover {
+  transform: translateY(-5px); /* Slight hover effect for a floating effect */
 }
 
 /* Image Container */
@@ -950,18 +955,18 @@ p {
 }
 
 .values-text h2 {
-  font-size: 32px;
+  font-size: 36px; /* Larger font size for better visibility */
   font-weight: bold;
-  margin-bottom: 15px;
+  margin-bottom: 20px; /* Adjusted margin */
   color: #0078d4;
 }
 
 /* Paragraph Styling */
 .values-text p {
-  font-size: 18px;
+  font-size: 20px; /* Increased font size */
   line-height: 1.6;
   color: #333;
-  margin-bottom: 10px;
+  margin-bottom: 15px; /* Added more spacing between paragraphs */
 }
 
 .values-text p strong {
@@ -1006,6 +1011,12 @@ p {
   .desktop-only {
     display: flex;
   }
+}
+
+/* Add some padding to the outer section for better spacing */
+section.values {
+  padding: 80px 20px;
+  background-color: #f0f4f8; /* Slightly lighter background for contrast */
 }
 
 
@@ -1271,7 +1282,7 @@ p {
   flex-direction: row;
   gap: 30px;
   align-items: center;
-  max-width: 900px;
+  max-width: 1800px;
   margin-bottom: 50px;
 }
 
