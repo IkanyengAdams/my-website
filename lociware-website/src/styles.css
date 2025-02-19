@@ -739,7 +739,12 @@ p {
   gap: 4rem;
 }
 
-/* Left Image */
+/* Left Images Container */
+.about-image-container {
+  display: flex;
+  gap: 2rem; /* Add spacing between images */
+}
+
 .about-image {
   flex: 1;
 }
@@ -760,6 +765,12 @@ p {
 .about-content h2 {
   font-size: 2rem;
   color: #333;
+}
+
+.about-content h2 span {
+  font-size: 2.0rem;
+  color: #2c2f31;
+  font-weight: bold;
 }
 
 .about-content h3 {
@@ -796,6 +807,11 @@ p {
     text-align: center;
   }
 
+  .about-image-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
   .about-image img {
     max-width: 90%;
     margin-bottom: 20px; /* Adds spacing between image and text */
@@ -805,9 +821,12 @@ p {
     text-align: center; /* Center-aligns text */
   }
 
+  .about-content h2 span {
+    font-size: 2rem; /* Adjust text size for smaller screens */
+  }
 }
 
-
+/* Icon Styling */
 .feature-icon {
   font-size: 1.5rem;
   color: #007bff;
@@ -864,6 +883,7 @@ p {
     margin-bottom: 30px;  /* Ensures more space on smaller screens */
   }
 }
+
 
 .vision-mission-container {
   display: flex;
