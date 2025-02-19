@@ -52,8 +52,8 @@ export default function TeamMembers() {
 
           <div className="team-card">
             <img src="/team4.png" alt="Team Member 7" className="team-image" />
-            <h3>MPHILE DLAMINI</h3>
-            <p>Office Admin</p>
+            <h3>Operational Team</h3>
+            <p>****</p>
           </div>
           <div className="team-card">
             <img src="/team5.png" alt="Team Member 8" className="team-image" />
