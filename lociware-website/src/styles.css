@@ -1190,8 +1190,7 @@ section.values {
 /* Grid Layout: 2 images on top, 3 on bottom */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two items per row for bigger images */
-  grid-template-rows: repeat(2, 1fr);   /* Two rows */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
   gap: 20px;
   justify-content: center;
   align-items: center;
@@ -1199,24 +1198,25 @@ section.values {
   margin: 0 auto;
 }
 
-/* Make the third item span full width */
-.service-card:nth-child(3) {
-  grid-column: span 2; /* Second row has 3 images, one of them takes the full width */
-}
-
 /* Service Card Styles */
 .service-card {
   position: relative;
   overflow: hidden;
   border-radius: 10px;
-  height: 500px;
+  width: 100%;
+  height: 400px;  /* Fixed height for all cards */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Service Image */
 .service-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover;  /* Ensures all images are cropped to fit */
   transition: transform 0.3s ease-in-out;
 }
 
@@ -1224,76 +1224,37 @@ section.values {
   transform: scale(1.05);
 }
 
-/* Overlay with Title on Top of Image */
+/* Overlay with Title */
 .service-overlay {
   position: absolute;
-  top: 10px; /* Title on top of the image */
-  left: 0;
+  bottom: 0;
   width: 100%;
-  background: rgba(0, 0, 0, 0.4); 
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 1;
-  transition: opacity 0.3s ease-in-out;
-  padding: 5px 0;
+  padding: 10px;
 }
 
 .service-overlay h3 {
   color: white;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
-  font-family: 'Cursive', sans-serif; /* Cursive font style */
   text-align: center;
   padding: 10px;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
-
-.service-card:hover .service-overlay {
-  background: rgba(0, 0, 0, 0.6);
-}
-
-
-/* Custom Arrows */
-.slick-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  font-size: 30px;
-  color: white;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.slick-arrow:hover {
-  color: #f39c12;
-}
-
-/* Positioning arrows on images */
-.slick-prev {
-  left: 10px; /* Align left arrow to the left of the image */
-}
-
-.slick-next {
-  right: 10px; /* Align right arrow to the right of the image */
-}
-
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .services-grid {
     grid-template-columns: 1fr; /* Stack images vertically on small screens */
   }
-
-  .service-card:nth-child(3) {
-    grid-column: span 1; /* Stack images when it's a single column */
-  }
-
-  .service-overlay h3 {
-    font-size: 18px; /* Adjust font size on smaller screens */
+  .service-card {
+    height: 350px; /* Adjust card height on smaller screens */
   }
 }
+
 
 
 

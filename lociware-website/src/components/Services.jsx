@@ -5,7 +5,7 @@ import Slider from "react-slick";
 const services = [
   { 
     title: "AIRPORT TRANSFERS", 
-    images: ["/image13.jpg", "/image14.jpg", "/image15.jpg"]
+    images: ["./image13.jpg", "/image14.jpg", "/image15.jpg"]
   },
   { 
     title: "COUNTRYWIDE TRANSPORTATION", 
@@ -21,6 +21,10 @@ const services = [
   },
   { 
     title: "SPECIAL EVENT HIRE", 
+    images: ["/image17.jpg", "/image13.jpg", "/image14.jpg"]
+  },
+  { 
+    title: "jjjjjjE", 
     images: ["/image17.jpg", "/image13.jpg", "/image14.jpg"]
   }
 ];
