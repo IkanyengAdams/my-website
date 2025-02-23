@@ -34,7 +34,7 @@ export default function Navbar({ navbarRef, infoRef, servicesRef, safetyRef, con
         <li><a onClick={() => scrollToSection(servicesRef)}>Services</a></li>
         <li><a onClick={() => scrollToSection(safetyRef)}>Safety</a></li>
         <li><a onClick={() => scrollToSection(contactRef)}>Contact Us</a></li>
-        <li><a href="#">News</a></li>
+        <li className="news"><a href="#">News</a></li>
       </ul>
     </nav>
   );

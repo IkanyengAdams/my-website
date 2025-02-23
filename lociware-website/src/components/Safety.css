@@ -2,7 +2,7 @@
     text-align: center;
     font-size: 2.5rem;
     font-weight: bold;
-    color: #0078d4;
+    color: #0c3f6c;
     margin-bottom: 20px;
   }
   
@@ -37,7 +37,7 @@
   .section-title {
     text-align: center;
     font-size: 1.8rem;
-    color: green;
+    color: #6fa634;
     font-weight: bold;
     margin-bottom: 10px;
   }
@@ -48,18 +48,18 @@
   }
   
  .section-icon {
-  color: #07d400; /* Blue color */
+  color: #6fa634; /* Blue color */
   font-size: 1.8rem; /* Increase icon size */
   margin-right: 12px; /* Add spacing */
 }
 
 .safety-section li svg {
-  color: #0078d4; /* Blue color */
+  color: #0c3f6c; /* Blue color */
   font-size: 1.5rem; /* Make icons slightly larger */
   margin-right: 10px; /* Add space between icon and text */
 }
 
   
   .multi-icons {
-    color: #0078d4
+    color: #0c3f6c
   }

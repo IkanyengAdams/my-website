@@ -43,7 +43,7 @@ export default function Values() {
           animate={isInView ? { scale: 1 } : { scale: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Values
+          Our Values
         </motion.div>
 
         {/* Small Circles */}

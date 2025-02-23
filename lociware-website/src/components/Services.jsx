@@ -2,10 +2,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import Slider from "react-slick";
 
+// Service data with valid image paths
 const services = [
   { 
     title: "AIRPORT TRANSFERS", 
-    images: ["./image13.jpg", "/image14.jpg", "/image15.jpg"]
+    images: ["/image14.jpg", "/image15.jpg"]
   },
   { 
     title: "COUNTRYWIDE TRANSPORTATION", 
@@ -24,7 +25,7 @@ const services = [
     images: ["/image17.jpg", "/image13.jpg", "/image14.jpg"]
   },
   { 
-    title: "jjjjjjE", 
+    title: "EXECUTIVE TRAVEL", 
     images: ["/image17.jpg", "/image13.jpg", "/image14.jpg"]
   }
 ];
@@ -38,9 +39,8 @@ export default function Services() {
     autoplay: true,
     autoplaySpeed: 3000,
     fade: true,
-    arrows: true,  // Change this to 'true' to enable arrows
+    arrows: true,  
   };
-  
 
   return (
     <section className="services-section">
@@ -58,8 +58,13 @@ export default function Services() {
           >
             <Slider {...sliderSettings}>
               {service.images.map((image, idx) => (
-                <div key={idx}>
-                  <img src={image} alt={`${service.title} ${idx + 1}`} className="service-image" />
+                <div key={idx} className="image-wrapper">
+                  <img 
+                    src={image} 
+                    alt={`${service.title} ${idx + 1}`} 
+                    className="service-image" 
+                    onError={(e) => e.target.style.display = 'none'} // Hide broken images
+                  />
                 </div>
               ))}
             </Slider>
