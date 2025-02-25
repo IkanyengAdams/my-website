@@ -55,7 +55,7 @@ export default function CustomerFeedback() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % feedbacks.length);
-    }, 7000);
+    }, 10000);
     return () => clearInterval(interval); // Cleanup on unmount
   }, [feedbacks.length]);
 
