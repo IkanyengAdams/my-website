@@ -66,6 +66,7 @@ body {
   list-style: none;
   margin: 0;
   padding: 0;
+  cursor: pointer;
 }
 
 .nav-links.desktop {
@@ -1026,7 +1027,7 @@ p {
 
 /* Add some padding to the outer section for better spacing */
 section.values {
-  padding: 80px 20px;
+  padding: 50px 20px;
   background-color: #f0f4f8; /* Slightly lighter background for contrast */
 }
 

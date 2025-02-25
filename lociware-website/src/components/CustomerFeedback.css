@@ -10,6 +10,7 @@
 .feedback-container {
   max-width: 1100px;
   margin: 0 auto;
+  position: relative;
 }
 
 /* Feedback Title */
@@ -21,21 +22,24 @@
   text-transform: uppercase;
 }
 
-/* Feedback Cards - Responsive Layout */
-.feedback-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Default 3 cards per row */
-  gap: 20px;
-  justify-items: center;
+/* Carousel Container */
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 600px;
 }
 
-/* Individual Feedback Card */
+/* Feedback Card */
 .feedback-card {
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
   width: 100%;
+  max-width: 500px;
   transition: transform 0.3s ease;
   text-align: left;
 }
@@ -71,6 +75,58 @@
   font-size: 1.1rem;
 }
 
+/* Carousel Arrows */
+.carousel-arrow {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #0c3f6c;
+  cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.carousel-arrow.left {
+  left: -40px;
+}
+
+.carousel-arrow.right {
+  right: -40px;
+}
+
+.carousel-arrow:hover {
+  color: #6fa634;
+}
+
+/* Carousel Dots */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: #ccc;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active {
+  background-color: #0c3f6c;
+}
+
+.dot:hover {
+  background-color: #6fa634;
+}
+
 /* Big Card Styling */
 .big-feedback-card {
   position: relative;
@@ -82,8 +138,8 @@
 }
 
 .big-card-image {
-  width: 100%; /* Make image responsive */
-  height: auto; /* Maintain aspect ratio */
+  width: 100%;
+  height: auto;
 }
 
 .big-card-overlay {
@@ -106,30 +162,51 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  /* Feedback Cards Layout */
-  .feedback-cards {
-    grid-template-columns: 1fr 1fr; /* Two cards per row */
+  .carousel-container {
+    max-width: 400px;
   }
 
-  /* Big Card Layout */
+  .carousel-arrow.left {
+    left: 10px;
+  }
+
+  .carousel-arrow.right {
+    right: 10px;
+  }
+
+  .feedback-card {
+    max-width: 350px;
+  }
+
   .big-feedback-card {
     max-width: 100%;
     width: 100%;
   }
 
   .big-card-image {
-    width: 100%; /* Image fills the container */
+    width: 100%;
     height: auto;
   }
 }
 
 @media (max-width: 480px) {
-  /* Feedback Cards Layout - Stack in a single column on very small screens */
-  .feedback-cards {
-    grid-template-columns: 1fr; /* One card per row */
+  .feedback-title {
+    font-size: 2rem;
   }
 
-  /* Big Card Layout for smaller screens */
+  .carousel-container {
+    max-width: 300px;
+  }
+
+  .feedback-card {
+    max-width: 250px;
+    padding: 15px;
+  }
+
+  .carousel-arrow {
+    font-size: 1.5rem;
+  }
+
   .big-feedback-card {
     max-width: 100%;
     margin: 20px auto;

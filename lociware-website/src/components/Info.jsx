@@ -46,40 +46,7 @@ export default function Info() {
   </motion.div>
 </div>
 
-      {/* Safety, Pricing, Fleet, Coverage */}
-      <div className="info-content">
-        <div className="info-item">
-          <motion.div className="info-icon-container" whileHover={{ rotate: 360 }} transition={{ type: 'spring', stiffness: 300, damping: 15 }}>
-            <FaShieldAlt className="info-icon" />
-          </motion.div>
-          <h3>Safety First</h3>
-          <p>Experienced staff and professionally trained chauffeurs, putting your safety first always.</p>
-        </div>
-
-        <div className="info-item">
-          <motion.div className="info-icon-container" whileHover={{ rotate: 360 }} transition={{ type: 'spring', stiffness: 300, damping: 15 }}>
-            <FaDollarSign className="info-icon" />
-          </motion.div>
-          <h3>Competitive Rates</h3>
-          <p>We can offer you the right vehicle at the right price to fit your budget.</p>
-        </div>
-
-        <div className="info-item">
-          <motion.div className="info-icon-container" whileHover={{ rotate: 360 }} transition={{ type: 'spring', stiffness: 300, damping: 15 }}>
-            <FaCar className="info-icon" />
-          </motion.div>
-          <h3>Large Fleet</h3>
-          <p>We offer an extensive fleet of vehicles including luxury sedans, MPVs, and coaches.</p>
-        </div>
-
-        <div className="info-item">
-          <motion.div className="info-icon-container" whileHover={{ rotate: 360 }} transition={{ type: 'spring', stiffness: 300, damping: 15 }}>
-            <FaGlobeAmericas className="info-icon" />
-          </motion.div>
-          <h3>Nationwide Service</h3>
-          <p>We cover most of the major centers in South Africa, ensuring you always have comfort and safety.</p>
-        </div>
-      </div>
+      
 
       {/* Image Cards Section */}
       <div className="info-cards">
