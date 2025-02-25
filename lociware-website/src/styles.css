@@ -38,16 +38,16 @@ h1, h2, h3, h4, h5, h6, p {
   padding: 16px;
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  position: fixed; /* Make navbar fixed */
-  top: 0; /* Align navbar to the top */
-  left: 0; /* Ensure navbar stretches across the width */
-  width: 100%; /* Full width */
-  z-index: 1000; /* Ensure navbar stays above other content */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 /* Adjust spacing for fixed navbar */
 body {
-  padding-top: 70px; /* Add some space at the top to prevent content from being hidden behind the navbar */
+  padding-top: 70px;
 }
 
 /* Logo */
@@ -63,25 +63,24 @@ body {
 
 /* Nav Links */
 .nav-links {
-  display: flex;
-  gap: 24px;
-  font: bold;
-  font-size: large;
   list-style: none;
-  margin-left: auto;
-  margin-right: 25px;
-  cursor: pointer;
-  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-  align-items: center; /* Ensure items are vertically aligned */
+  margin: 0;
+  padding: 0;
 }
 
-/* Make sure "News" stays on the far right */
-.nav-links li:last-child {
-  margin-left: auto; /* Push "News" to the far right */
+.nav-links.desktop {
+  display: flex;
+  gap: 24px;
+  font-size: large;
+  font-weight: bold; /* Make font bold */
+  margin-left: auto;
+  margin-right: 25px;
+  align-items: center;
 }
 
 .nav-links li a {
   color: #4a4a4a;
+  text-decoration: none;
   transition: color 0.3s ease;
 }
 
@@ -89,16 +88,15 @@ body {
   color: #0c3f6c;
 }
 
-/* Mobile Styles */
+/* Hamburger */
 .hamburger {
   display: none;
   cursor: pointer;
   flex-direction: column;
   gap: 5px;
-  justify-content: center;
-  align-items: center;
   width: 30px;
   height: 25px;
+  margin-right: 40px;
 }
 
 .hamburger .bar {
@@ -109,7 +107,7 @@ body {
 }
 
 .hamburger.open .bar:nth-child(1) {
-  transform: rotate(45deg) translateY(8px);
+  transform: rotate(45deg) translate(8px, 8px);
 }
 
 .hamburger.open .bar:nth-child(2) {
@@ -117,61 +115,43 @@ body {
 }
 
 .hamburger.open .bar:nth-child(3) {
-  transform: rotate(-45deg) translateY(-8px);
+  transform: rotate(-45deg) translate(8px, -8px);
 }
 
-/* Responsive Navbar for Small Screens */
+/* Responsive Styles */
 @media (max-width: 780px) {
-  /* Fix the navbar container to be visible */
-  .navbar {
-    position: fixed; /* Ensure the navbar stays fixed */
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links.desktop {
+    display: none; /* Hide desktop links on small screens */
   }
 
   .nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px; /* Adjust top position to avoid overlapping the navbar */
-    left: 0;
-    width: 100%;
+    position: fixed;
+    top: 60px;
+    right: 0;
+    width: 250px; /* Fixed width for the sidebar */
+    height: 100vh; /* Full height */
     background-color: white;
-    padding: 10px 0;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-
-  .nav-links.active {
+    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
     display: flex;
-    opacity: 1;
-    transform: translateY(0);
+    flex-direction: column;
+    padding: 20px;
+    z-index: 999;
   }
 
   .nav-links li {
-    padding: 12px 0;
-    text-align: center;
+    padding: 15px 0;
+    text-align: left;
   }
 
   .nav-links li a {
-    font-size: 15px;
+    font-size: 18px;
+    font-weight: bold; /* Bold font for mobile too */
     color: #333;
     display: block;
-  }
-
-  /* Ensure hamburger icon is visible */
-  .hamburger {
-    display: flex;
-    margin-right: 40px;
-  }
-
-  .news{
-    margin-bottom: 120px;
-    
   }
 }
 

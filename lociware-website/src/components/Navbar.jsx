@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar({ navbarRef, infoRef, servicesRef, safetyRef, contactRef }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,7 +15,7 @@ export default function Navbar({ navbarRef, infoRef, servicesRef, safetyRef, con
   const scrollToSection = (ref) => {
     if (ref && ref.current) {
       ref.current.scrollIntoView({ behavior: "smooth" });
-      closeMenu(); // Close menu when clicking a link
+      closeMenu();
     }
   };
 
@@ -28,14 +29,33 @@ export default function Navbar({ navbarRef, infoRef, servicesRef, safetyRef, con
         <div className="bar"></div>
         <div className="bar"></div>
       </div>
-      <ul className={`nav-links ${isMenuOpen ? "active" : ""}`}>
-        <li><a onClick={() => scrollToSection(navbarRef)}>Home</a></li>
-        <li><a onClick={() => scrollToSection(infoRef)}>About Us</a></li>
-        <li><a onClick={() => scrollToSection(servicesRef)}>Services</a></li>
-        <li><a onClick={() => scrollToSection(safetyRef)}>Safety</a></li>
-        <li><a onClick={() => scrollToSection(contactRef)}>Contact Us</a></li>
-        <li className="news"><a href="#">News</a></li>
-      </ul>
+      <AnimatePresence>
+        {isMenuOpen ? (
+          <motion.ul
+            className="nav-links"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", stiffness: 100, damping: 20 }}
+          >
+            <li><a onClick={() => scrollToSection(navbarRef)}>Home</a></li>
+            <li><a onClick={() => scrollToSection(infoRef)}>About Us</a></li>
+            <li><a onClick={() => scrollToSection(servicesRef)}>Services</a></li>
+            <li><a onClick={() => scrollToSection(safetyRef)}>Safety</a></li>
+            <li><a onClick={() => scrollToSection(contactRef)}>Contact Us</a></li>
+            <li><a href="#">News</a></li>
+          </motion.ul>
+        ) : (
+          <ul className="nav-links desktop">
+            <li><a onClick={() => scrollToSection(navbarRef)}>Home</a></li>
+            <li><a onClick={() => scrollToSection(infoRef)}>About Us</a></li>
+            <li><a onClick={() => scrollToSection(servicesRef)}>Services</a></li>
+            <li><a onClick={() => scrollToSection(safetyRef)}>Safety</a></li>
+            <li><a onClick={() => scrollToSection(contactRef)}>Contact Us</a></li>
+            <li><a href="#">News</a></li>
+          </ul>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
