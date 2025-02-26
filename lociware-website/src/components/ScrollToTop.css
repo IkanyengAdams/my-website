@@ -1,0 +1,43 @@
+.scroll-to-top {
+    position: fixed;
+    bottom: 160px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: #0c3f6c; /* Green background to match your chatbot and project theme */
+    border-radius: 50%; /* Circular shape */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px; /* Large arrow symbol */
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+    z-index: 1000; /* Ensure it’s on top of other content */
+  }
+  
+  .scroll-to-top.visible {
+    opacity: 1; /* Visible when class is added */
+  }
+  
+  .scroll-to-top:hover {
+    background: #45a049; /* Darker green on hover */
+    transform: scale(1.1); /* Slightly larger on hover */
+  }
+  
+  .scroll-to-top:active {
+    transform: scale(0.95); /* Slightly smaller when clicked */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .scroll-to-top {
+      width: 40px; /* Slightly smaller on mobile */
+      height: 40px; /* Slightly smaller on mobile */
+      font-size: 20px; /* Smaller arrow symbol */
+      bottom: 15px; /* Slightly higher on mobile */
+      right: 15px; /* Slightly more space on mobile */
+    }
+  }
