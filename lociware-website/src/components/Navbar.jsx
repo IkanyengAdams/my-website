@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocation } from 'react-router-dom'; // Import useLocation to detect the current route
 
 export default function Navbar({ navbarRef, infoRef, servicesRef, safetyRef, contactRef }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation(); // Get current location to handle navigation on all pages
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -16,8 +18,19 @@ export default function Navbar({ navbarRef, infoRef, servicesRef, safetyRef, con
     if (ref && ref.current) {
       ref.current.scrollIntoView({ behavior: "smooth" });
       closeMenu();
+    } else {
+      // If ref is null (e.g., on /privacy-policy), do nothing or navigate to homepage
+      if (location.pathname === '/privacy-policy') {
+        window.location.href = '/'; // Navigate to homepage if on privacy policy page
+        closeMenu();
+      }
     }
   };
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    closeMenu(); // Close menu when navigating to a new route
+  }, [location]);
 
   return (
     <nav className="navbar">
