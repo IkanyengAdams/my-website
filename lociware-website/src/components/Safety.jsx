@@ -24,7 +24,6 @@ export default function Safety() {
         <div className="safety-section">
           <h3 className="section-title">OUR CHAUFFEURS</h3>
           <div className="section-content">
-            <FaShekelSign className="section-icon" />
             <p>
               All new Chauffeurs undergo an extensive induction program where they are fully trained and accredited with the below certification during their recruitment:
             </p>
@@ -42,7 +41,6 @@ export default function Safety() {
         <div className="safety-section">
           <h3 className="section-title">OUR VEHICLES</h3>
           <div className="section-content">
-            <FaShieldAlt className="section-icon" />
             <p>
               Our daily Vehicle Monitoring of movements, surroundings, environment, accidents, and incidents ensures the safety of our Customers and Chauffeurs at all times.
             </p>
