@@ -1263,7 +1263,7 @@ p {
   .values-circle-container {
     width: 280px; /* Reduced size for small screens */
     height: 280px;
-    margin-left: 80px;
+    margin-left: 25px;
     margin-bottom: 20px; /* Space before explanations */
     justify-content: center; /* Center circles horizontally on small screens */
   }
@@ -1284,6 +1284,7 @@ p {
   .explanation-container {
     padding-left: 0; /* Remove padding from explanations on small screens */
     width: 100%; /* Full width for explanations */
+    margin-left: 15px;
   }
 
   .value-explanation {
@@ -1448,96 +1449,169 @@ section.values {
 /* General Styles */
 .services-section {
   text-align: center;
-  padding: 60px 20px;
+  padding: 80px 20px;
   background-color: #f8f8f8;
 }
 
 .services-title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: bold;
   text-transform: uppercase;
   color: #002244;
+  margin-bottom: 20px;
 }
 
 .services-subtitle {
-  font-size: 18px;
+  font-size: 1.2rem;
   margin-bottom: 40px;
   color: #555;
 }
 
-/* Grid Layout: 2 images on top, 3 on bottom */
+/* Grid Layout - Responsive for all screens */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); /* Slightly larger cards */
+  gap: 40px;
   justify-content: center;
-  align-items: center;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 /* Service Card Styles */
 .service-card {
   position: relative;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 15px;
+  background: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Content */
+.card-content {
+  padding: 25px;
+  height: 500px; /* Taller height for better layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Service Title */
+.service-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #002244;
+  margin-bottom: 15px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* Service Description */
+.service-description {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  text-align: center;
+  flex: 1; /* Allow description to grow and push image down */
+}
+
+/* Image Containers */
+.image-container {
   width: 100%;
-  height: 400px;  /* Fixed height for all cards */
+}
+
+.image-container.carousel {
+  height: 300px; /* Fixed height for carousel */
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.image-container.single {
+  height: 300px; /* Match carousel height for single images */
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+/* Carousel Styles */
+.image-slide {
+  height: 100%;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: white;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Service Image */
+/* Service Image (Carousel) */
 .service-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;  /* Ensures all images are cropped to fit */
-  transition: transform 0.3s ease-in-out;
+  object-fit: cover; /* Ensure images fill the space without stretching unnaturally */
+  border-radius: 10px;
+  transition: transform 0.3s ease;
 }
 
 .service-card:hover .service-image {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
-/* Overlay with Title */
-.service-overlay {
-  position: absolute;
-  bottom: 0;
+/* Single Service Image */
+.single-service-image {
   width: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
+  height: 100%;
+  object-fit: cover; /* Ensure single images fill the space without stretching */
+  border-radius: 10px;
+  transition: transform 0.3s ease;
 }
 
-.service-overlay h3 {
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  padding: 10px;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+.service-card:hover .single-service-image {
+  transform: scale(1.1); /* Match hover effect of carousel images */
 }
 
-/* Custom Arrow Styles for react-slick */
+/* Next Image Preview on Hover */
+.next-image-preview {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px; /* Smaller preview size */
+  height: 75px; /* Proportional height */
+  overflow: hidden;
+  z-index: 10;
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+/* Custom Arrow Styles for react-slick - Higher and Larger */
 .custom-arrow {
   background: rgba(0, 0, 0, 0.5);
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 50px; /* Larger arrows */
+  height: 50px; /* Larger arrows */
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 20px;
+  font-size: 24px; /* Larger arrow symbols */
   cursor: pointer;
   position: absolute;
-  top: 50%;
+  top: 20%; /* Higher position (closer to top) */
   transform: translateY(-50%);
   z-index: 1;
   transition: background-color 0.3s ease;
@@ -1555,28 +1629,94 @@ section.values {
   right: 10px;
 }
 
-/* Ensure arrows are visible and styled on small screens */
+/* Custom Dots (Indicators) for react-slick */
+.custom-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #ccc;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dot:hover, .dot.slick-active {
+  background: #002244; /* Match title color for active/indicator */
+}
+
+/* Ensure arrows and dots are visible and styled on small screens */
 .custom-arrow span {
-  font-size: 24px; /* Larger arrow symbols for better visibility */
+  font-size: 24px;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .services-grid {
     grid-template-columns: 1fr; /* Stack cards vertically on small screens */
+    gap: 25px;
+  }
+
+  .services-title {
+    font-size: 2rem;
+  }
+
+  .services-subtitle {
+    font-size: 1rem;
   }
 
   .service-card {
-    height: 350px; /* Adjust card height on smaller screens */
+    height: auto; /* Auto height on small screens for flexibility */
+  }
+
+  .card-content {
+    height: 450px; /* Adjusted height for smaller screens */
+    padding: 15px;
+  }
+
+  .service-title {
+    font-size: 1.5rem;
+  }
+
+  .service-description {
+    font-size: 0.9rem;
+  }
+
+  .image-container.carousel, .image-container.single {
+    height: 250px; /* Reduced height for both carousel and single images on small screens */
   }
 
   .custom-arrow {
-    width: 30px;
-    height: 30px;
-    font-size: 18px;
+    width: 40px; /* Slightly smaller on mobile */
+    height: 40px; /* Slightly smaller on mobile */
+    font-size: 20px; /* Slightly smaller arrows */
+    top: 25%; /* Adjusted higher position on mobile */
   }
 
   .custom-arrow span {
-    font-size: 20px; /* Slightly smaller arrows on mobile */
+    font-size: 20px; /* Slightly smaller arrow symbols on mobile */
+  }
+
+  .custom-dots {
+    bottom: 5px;
+    gap: 8px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .next-image-preview {
+    width: 80px; /* Smaller preview on mobile */
+    height: 60px; /* Proportional height */
   }
 }

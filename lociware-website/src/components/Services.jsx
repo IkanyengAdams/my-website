@@ -1,36 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Slider from "react-slick";
 
-// Service data with valid image paths (assuming images are in the public folder)
+// Service data with local images, corrected order
 const services = [
   { 
-    title: "AIRPORT TRANSFERS", 
-    images: ["/image14.jpg", "/image15.jpg"]
+    title: "Airport Transfers", 
+    description: "Seamless and reliable transportation to and from airports, ensuring you arrive on time and in style.",
+    images: ["/tambo.jpg", "/pilanesburg.png", "/lanseria.jpg"]
   },
   { 
-    title: "COUNTRYWIDE TRANSPORTATION", 
-    images: ["/image14.jpg", "/image13.jpg", "/image16.jpg"]
+    title: "Countrywide Transportation", 
+    description: "Comprehensive travel solutions across the country, tailored for comfort and efficiency.",
+    images: ["/cape-town.jpg", "/sun-city.jpg", "/durban.jpg"]
   },
   { 
-    title: "CORPORATE TRAVEL", 
-    images: ["/image15.jpg", "/image14.jpg", "/image13.jpg"]
+    title: "Corporate Travel", 
+    description: "Professional transportation for business needs, ensuring punctuality and professionalism.",
+    images: ["/coporate.png", "/coporate1.png", "/coporate2.png"]
   },
   { 
-    title: "CHAUFFEUR SERVICE", 
-    images: ["/image16.jpg", "/image15.jpg", "/image14.jpg"]
+    title: "Chauffeur Service", 
+    description: "Luxury chauffeur-driven rides for a personalized and safe travel experience.",
+    images: ["/coporate3.png"] // Single image for last three services
   },
   { 
-    title: "SPECIAL EVENT HIRE", 
-    images: ["/image17.jpg", "/image13.jpg", "/image14.jpg"]
+    title: "Special Event Hire", 
+    description: "Premium vehicle hire for events, making your special occasions unforgettable.",
+    images: ["/image11.png"] // Single image
   },
   { 
-    title: "EXECUTIVE TRAVEL", 
-    images: ["/image17.jpg", "/image13.jpg", "/image14.jpg"]
+    title: "Executive Travel", 
+    description: "High-end travel solutions for executives, combining luxury and reliability.",
+    images: ["/image17.png"] // Single image
   }
 ];
 
 export default function Services() {
+  const [hoveredIndex, setHoveredIndex] = useState(null); // Track which image is hovered
+
   const sliderSettings = {
     infinite: true,
     speed: 500,
@@ -38,14 +46,22 @@ export default function Services() {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    fade: true,
+    fade: false, // Use slide instead of fade for better visibility with indicators
     arrows: true,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    nextArrow: <CustomNextArrow />,
+    prevArrow: <CustomPrevArrow />,
+    appendDots: (dots) => (
+      <div className="custom-dots">
+        <ul style={{ margin: "0px" }}>{dots}</ul>
+      </div>
+    ),
+    customPaging: (i) => (
+      <button className="dot"></button>
+    ),
   };
 
   // Custom Arrow Components for react-slick
-  function SampleNextArrow(props) {
+  function CustomNextArrow(props) {
     const { className, style, onClick } = props;
     return (
       <div
@@ -58,7 +74,7 @@ export default function Services() {
     );
   }
 
-  function SamplePrevArrow(props) {
+  function CustomPrevArrow(props) {
     const { className, style, onClick } = props;
     return (
       <div
@@ -73,37 +89,103 @@ export default function Services() {
 
   return (
     <section className="services-section">
-      <h2 className="services-title">OUR SERVICE OFFERING</h2>
-      <p className="services-subtitle">See What We Can Do for You</p>
+      <motion.h2 
+        className="services-title"
+        initial={{ opacity: 0, y: -50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{}}
+      >
+        OUR SERVICE OFFERING
+      </motion.h2>
+      <motion.p 
+        className="services-subtitle"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+        viewport={{}}
+      >
+        Discover Our Premium Transportation Solutions
+      </motion.p>
       <div className="services-grid">
         {services.map((service, index) => (
           <motion.div
             key={index}
             className="service-card"
-            initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{}} // Triggers every time in view
+            viewport={{}}
           >
-            <Slider {...sliderSettings}>
-              {service.images.map((image, idx) => (
-                <div key={idx} className="image-wrapper">
-                  <img 
-                    src={process.env.PUBLIC_URL + image} 
-                    alt={`${service.title} ${idx + 1}`} 
-                    className="service-image" 
-                    onError={(e) => {
-                      console.error(`Image failed to load: ${process.env.PUBLIC_URL + image}`);
-                      e.target.style.display = 'none'; // Hide broken images
-                      e.target.src = "/default-image.jpg"; // Fallback to a default image (optional, ensure default-image.jpg exists in public folder)
-                    }} 
-                    loading="lazy" // Lazy load images for performance
-                  />
-                </div>
-              ))}
-            </Slider>
-            <div className="service-overlay">
-              <h3>{service.title}</h3>
+            <div className="card-content">
+              <h3 className="service-title">{service.title}</h3>
+              <p className="service-description">{service.description}</p>
+              <div className={`image-container ${service.images.length > 1 ? 'carousel' : 'single'}`}>
+                {service.images.length > 1 ? (
+                  <Slider {...sliderSettings}>
+                    {service.images.map((image, idx) => (
+                      <div key={idx} className="image-slide">
+                        <motion.img 
+                          src={image.startsWith('http') ? image : process.env.PUBLIC_URL + image} 
+                          alt={`${service.title} ${idx + 1}`} 
+                          className="service-image" 
+                          onError={(e) => {
+                            console.error(`Image failed to load: ${image}`);
+                            e.target.style.display = 'none'; // Hide broken images
+                            e.target.src = "https://via.placeholder.com/800x500?text=Image+Not+Found"; // Fallback placeholder
+                            console.log('Fallback image applied for:', image); // Additional logging
+                          }} 
+                          loading="lazy" // Lazy load images for performance
+                          onMouseEnter={() => setHoveredIndex(idx)} // Set hovered index on mouse enter
+                          onMouseLeave={() => setHoveredIndex(null)} // Reset on mouse leave
+                          initial={{ opacity: 1 }}
+                          animate={{
+                            opacity: hoveredIndex === idx ? 0.7 : 1, // Slightly fade current image on hover
+                          }}
+                          transition={{ duration: 0.3 }}
+                        />
+                        {hoveredIndex === idx && idx < service.images.length - 1 && (
+                          <motion.div 
+                            className="next-image-preview"
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 0.5, x: 0 }} // Slide in next image preview
+                            exit={{ opacity: 0, x: 20 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <img 
+                              src={service.images[(idx + 1) % service.images.length].startsWith('http') 
+                                ? service.images[(idx + 1) % service.images.length] 
+                                : process.env.PUBLIC_URL + service.images[(idx + 1) % service.images.length]} 
+                              alt={`${service.title} ${idx + 2}`} 
+                              className="preview-image" 
+                              onError={(e) => {
+                                console.error(`Preview image failed to load: ${service.images[(idx + 1) % service.images.length]}`);
+                                e.target.style.display = 'none'; // Hide broken preview images
+                                e.target.src = "https://via.placeholder.com/800x500?text=Preview+Not+Found"; // Fallback for preview
+                              }}
+                            />
+                          </motion.div>
+                        )}
+                      </div>
+                    ))}
+                  </Slider>
+                ) : (
+                  <div className="single-image">
+                    <img 
+                      src={service.images[0].startsWith('http') ? service.images[0] : process.env.PUBLIC_URL + service.images[0]} 
+                      alt={`${service.title} 1`} 
+                      className="single-service-image" 
+                      onError={(e) => {
+                        console.error(`Single image failed to load: ${service.images[0]}`);
+                        e.target.style.display = 'none'; // Hide broken images
+                        e.target.src = "https://via.placeholder.com/800x500?text=Image+Not+Found"; // Fallback placeholder
+                        console.log('Fallback image applied for:', service.images[0]); // Additional logging
+                      }} 
+                      loading="lazy" // Lazy load images for performance
+                    />
+                  </div>
+                )}
+              </div>
             </div>
           </motion.div>
         ))}
