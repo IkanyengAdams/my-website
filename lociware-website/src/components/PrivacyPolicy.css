@@ -1,0 +1,80 @@
+.privacy-policy {
+    max-width: 800px;
+    margin: 180px auto 50px; /* Increased top margin to 80px to account for navbar height */
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    color: #333;
+  }
+  
+  .privacy-policy h1 {
+    font-size: 28px;
+    color: #0c3f6c; /* Dark blue for headings */
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .privacy-policy h2 {
+    font-size: 22px;
+    color: #0c3f6c; /* Dark blue for subheadings */
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+  
+  .privacy-policy p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #4a4a4a; /* Dark gray for paragraphs */
+  }
+  
+  .privacy-policy strong {
+    color: #0c3f6c; /* Dark blue for emphasis */
+  }
+  
+  .privacy-policy ul.policy-list {
+    list-style-type: disc; /* Bullet points for lists */
+    margin: 15px 0 15px 20px; /* Spacing for bullet lists */
+  }
+  
+  .privacy-policy ul.policy-list li {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: #4a4a4a; /* Dark gray for list items */
+  }
+  
+  .privacy-policy a {
+    color: #4CAF50; /* Green for links, matching your theme */
+    text-decoration: underline;
+    transition: color 0.3s ease;
+  }
+  
+  .privacy-policy a:hover {
+    color: #0c3f6c; /* Dark blue on hover */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .privacy-policy {
+      margin: 70px 20px 20px; /* Adjusted top margin for mobile, accounting for navbar */
+      padding: 15px;
+    }
+  
+    .privacy-policy h1 {
+      font-size: 24px;
+    }
+  
+    .privacy-policy h2 {
+      font-size: 18px;
+    }
+  
+    .privacy-policy p, .privacy-policy ul.policy-list li {
+      font-size: 14px;
+    }
+  
+    .privacy-policy ul.policy-list {
+      margin-left: 15px; /* Reduced margin on mobile */
+    }
+  }
