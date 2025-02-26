@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom'; // Added for routing (if not already installed)
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Contact from './components/Contact';
@@ -10,10 +11,10 @@ import Safety from './components/Safety';
 import TeamMembers from './components/TeamMembers';
 import CustomerFeedback from './components/CustomerFeedback';
 import Footer from './components/Footer';
+import Chatbot from './components/Chatbot'; // Import the Chatbot component
 import './styles.css';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-
 
 function App() {
   const navbarRef = useRef(null);
@@ -23,25 +24,29 @@ function App() {
   const contactRef = useRef(null);
 
   return (
-    <div className="App">
-      <Navbar
-        navbarRef={navbarRef}
-        infoRef={infoRef} // This now correctly points to Info
-        servicesRef={servicesRef}
-        safetyRef={safetyRef}
-        contactRef={contactRef}
-      />
-      <div ref={navbarRef}><Hero /></div>
-      <div ref={infoRef}><Info /></div>
-      <Values />
-      <AboutUs /> 
-      <div ref={servicesRef}><Services /></div>
-      <div ref={contactRef}><Contact /></div>
-      <div ref={safetyRef}><Safety /></div>
-      <TeamMembers />
-      <CustomerFeedback />
-      <Footer />
-    </div>
+    <Router> {/* Wrap the app in Router for potential routing */}
+      <div className="App">
+        <Navbar
+          navbarRef={navbarRef}
+          infoRef={infoRef} // This now correctly points to Info
+          servicesRef={servicesRef}
+          safetyRef={safetyRef}
+          contactRef={contactRef}
+        />
+        <div ref={navbarRef}><Hero /></div>
+        <div ref={infoRef}><Info /></div>
+        <Values />
+        <AboutUs /> 
+        <div ref={servicesRef}><Services /></div>
+        <div ref={contactRef}><Contact /></div>
+        <div ref={safetyRef}><Safety /></div>
+        <TeamMembers />
+        <CustomerFeedback />
+        <Footer />
+        {/* Render Chatbot as a fixed overlay across all pages */}
+        <Chatbot />
+      </div>
+    </Router>
   );
 }
 
