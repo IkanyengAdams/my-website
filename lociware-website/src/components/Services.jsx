@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Slider from "react-slick";
 
-// Service data with valid image paths
+// Service data with valid image paths (assuming images are in the public folder)
 const services = [
   { 
     title: "AIRPORT TRANSFERS", 
@@ -39,8 +39,37 @@ export default function Services() {
     autoplay: true,
     autoplaySpeed: 3000,
     fade: true,
-    arrows: true,  
+    arrows: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
   };
+
+  // Custom Arrow Components for react-slick
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={`${className} custom-arrow next`}
+        style={{ ...style, display: "block" }}
+        onClick={onClick}
+      >
+        <span>›</span> {/* Right arrow symbol */}
+      </div>
+    );
+  }
+
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={`${className} custom-arrow prev`}
+        style={{ ...style, display: "block" }}
+        onClick={onClick}
+      >
+        <span>‹</span> {/* Left arrow symbol */}
+      </div>
+    );
+  }
 
   return (
     <section className="services-section">
@@ -54,16 +83,21 @@ export default function Services() {
             initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true }}
+            viewport={{}} // Triggers every time in view
           >
             <Slider {...sliderSettings}>
               {service.images.map((image, idx) => (
                 <div key={idx} className="image-wrapper">
                   <img 
-                    src={image} 
+                    src={process.env.PUBLIC_URL + image} 
                     alt={`${service.title} ${idx + 1}`} 
                     className="service-image" 
-                    onError={(e) => e.target.style.display = 'none'} // Hide broken images
+                    onError={(e) => {
+                      console.error(`Image failed to load: ${process.env.PUBLIC_URL + image}`);
+                      e.target.style.display = 'none'; // Hide broken images
+                      e.target.src = "/default-image.jpg"; // Fallback to a default image (optional, ensure default-image.jpg exists in public folder)
+                    }} 
+                    loading="lazy" // Lazy load images for performance
                   />
                 </div>
               ))}
