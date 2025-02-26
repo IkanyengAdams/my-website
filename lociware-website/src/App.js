@@ -12,9 +12,8 @@ import TeamMembers from './components/TeamMembers';
 import CustomerFeedback from './components/CustomerFeedback';
 import Footer from './components/Footer';
 import Chatbot from './components/Chatbot'; // Import the Chatbot component
+import ScrollToTop from './components/ScrollToTop'; // Import the new ScrollToTop component
 import './styles.css';
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   const navbarRef = useRef(null);
@@ -45,6 +44,8 @@ function App() {
         <Footer />
         {/* Render Chatbot as a fixed overlay across all pages */}
         <Chatbot />
+        {/* Render ScrollToTop as a fixed overlay across all pages */}
+        <ScrollToTop />
       </div>
     </Router>
   );
