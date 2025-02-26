@@ -72,7 +72,7 @@ export default function Values() {
         <div className="explanation-container">
           {["Botho Pele", "Safety", "Integrity", "Honesty", "Respect"].map((value, index) => (
             <p key={index} className="value-explanation">
-              {value}: {valueExplanations[value]}
+              <strong>{value}:</strong> {valueExplanations[value]}
             </p>
           ))}
         </div>
