@@ -1,54 +1,54 @@
 .safety-title {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #0c3f6c;
-    margin-bottom: 20px;
-  }
-  
-  .safety-content {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    text-align: center;
-  }
-  
-  .safety-content ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .safety-content li {
-    margin-bottom: 10px;
-  }
-  
-  .safety-sections {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 40px;
-  }
-  
-  .safety-section {
-    width: 45%;
-    padding: 20px;
-    background-color: #f0f8ff;
-    border-radius: 10px;
-  }
-  
-  .section-title {
-    text-align: center;
-    font-size: 1.8rem;
-    color: #6fa634;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .section-content {
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-  
- .section-icon {
-  color: #6fa634; /* Blue color */
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #0c3f6c;
+  margin-bottom: 20px;
+}
+
+.safety-content {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.safety-content ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.safety-content li {
+  margin-bottom: 10px;
+}
+
+.safety-sections {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.safety-section {
+  width: 45%;
+  padding: 20px;
+  background-color: #f0f8ff;
+  border-radius: 10px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #6fa634;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.section-content {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.section-icon {
+  color: #6fa634; /* Green color */
   font-size: 1.8rem; /* Increase icon size */
   margin-right: 12px; /* Add spacing */
 }
@@ -59,7 +59,15 @@
   margin-right: 10px; /* Add space between icon and text */
 }
 
-  
-  .multi-icons {
-    color: #0c3f6c
+/* Responsive Design for Small Screens */
+@media (max-width: 768px) {
+  .safety-sections {
+    flex-direction: column; /* Stack cards vertically on small screens */
+    align-items: center;
   }
+
+  .safety-section {
+    width: 90%; /* Full width on small screens for better readability */
+    margin-bottom: 20px; /* Add spacing between stacked cards */
+  }
+}

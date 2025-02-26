@@ -22,7 +22,7 @@ export default function Safety() {
       <div className="safety-sections">
         {/* Drivers Section */}
         <div className="safety-section">
-          <h3 className="section-title">DRIVERS</h3>
+          <h3 className="section-title">OUR CHAUFFEURS</h3>
           <div className="section-content">
             <FaShekelSign className="section-icon" />
             <p>
@@ -40,7 +40,7 @@ export default function Safety() {
 
         {/* Vehicles Section */}
         <div className="safety-section">
-          <h3 className="section-title">VEHICLES</h3>
+          <h3 className="section-title">OUR VEHICLES</h3>
           <div className="section-content">
             <FaShieldAlt className="section-icon" />
             <p>
