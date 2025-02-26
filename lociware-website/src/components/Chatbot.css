@@ -224,13 +224,14 @@
   /* Responsive Design */
   @media (max-width: 768px) {
     .chatbot-container {
-      bottom: 15px; /* Slightly higher on mobile */
+      top: 200px; /* Increased from 15px to lower the chatbot on mobile, avoiding navbar overlap */
       right: 15px; /* Slightly more space on mobile */
+      z-index: 900; /* Lowered z-index to ensure navbar (z-index: 1000) and hamburger (z-index: 1001) are above */
     }
   
     .chat-window {
       width: 300px; /* Slightly smaller but still larger than original */
-      bottom: 70px; /* Adjusted for larger toggle */
+      top: 1px; /* Adjusted to accommodate the lowered toggle button */
     }
   
     .chat-messages {
