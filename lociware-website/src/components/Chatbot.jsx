@@ -165,7 +165,6 @@ const Chatbot = () => {
           />
           <button type="submit" className="send-btn" disabled={isLoading}>✈️</button>
         </form>
-        <p className="powered-by">POWERED BY Tidio</p>
       </motion.div>
     </div>
   );
