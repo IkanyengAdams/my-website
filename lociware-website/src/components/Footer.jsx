@@ -9,6 +9,9 @@ export default function Footer() {
         <div className="footer-section">
           <h2>Shuttle Hire & Transfers</h2>
           <p>Reliable, safe, and affordable transportation services across South Africa.</p>
+          <p className="popi-statement">
+            We comply with the <a href="/privacy-policy" className="popi-link">Protection of Personal Information Act (POPI Act) of 2025</a>. View our Privacy Policy for more details.
+          </p>
         </div>
 
         {/* Right Section - Contact & Social Media */}
