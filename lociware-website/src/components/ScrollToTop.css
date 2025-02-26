@@ -37,7 +37,7 @@
       width: 40px; /* Slightly smaller on mobile */
       height: 40px; /* Slightly smaller on mobile */
       font-size: 20px; /* Smaller arrow symbol */
-      bottom: 15px; /* Slightly higher on mobile */
+      bottom: 120px; /* Slightly higher on mobile */
       right: 15px; /* Slightly more space on mobile */
     }
   }
