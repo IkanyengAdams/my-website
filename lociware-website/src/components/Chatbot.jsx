@@ -1,40 +1,69 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import './Chatbot.css';
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { id: 1, text: "Hi there 👋", sender: 'bot', time: 'Just now', avatar: '/lociware_logo2.png' }, // Updated to use lociware_logo2.png
+    { id: 1, text: "Hi there 👋", sender: 'bot', time: 'Just now', avatar: '/lociware_logo2.png' },
     { id: 2, text: "We typically reply within a few minutes.", sender: 'bot', time: 'Just now' },
   ]);
   const [userMessage, setUserMessage] = useState('');
   const [showPrevious, setShowPrevious] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Loading state for bot responses
 
   const toggleChat = () => setIsOpen(!isOpen);
 
-  const handleSendMessage = (e) => {
+  const handleSendMessage = async (e) => {
     e.preventDefault();
     if (!userMessage.trim()) return;
 
     // Add user message
-    setMessages([...messages, { id: messages.length + 1, text: userMessage, sender: 'user', time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }]);
+    const newUserMessage = { 
+      id: messages.length + 1, 
+      text: userMessage, 
+      sender: 'user', 
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) 
+    };
+    setMessages([...messages, newUserMessage]);
+    setUserMessage('');
+    setIsLoading(true);
 
-    // Simulate bot response (for demo, you can replace with API call later)
-    setTimeout(() => {
-      setMessages(prevMessages => [
-        ...prevMessages,
-        { 
-          id: prevMessages.length + 1, 
-          text: "All right! If you need anything, let us know. We’re certain there’s a lot you could be doing better to take your business to the next level. 😊", 
+    try {
+      // Send message to backend
+      const response = await fetch('http://localhost:5000/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: userMessage }),
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        // Add bot response
+        const botResponse = { 
+          id: messages.length + 2, 
+          text: data.reply, 
           sender: 'bot', 
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), 
           avatar: '/lociware_logo2.png' 
-        }
-      ]);
-    }, 1000); // Simulate a 1-second delay for bot response
-
-    setUserMessage('');
+        };
+        setMessages(prevMessages => [...prevMessages, botResponse]);
+      } else {
+        throw new Error(data.error || 'Failed to get response');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      const errorMessage = { 
+        id: messages.length + 2, 
+        text: "Sorry, I couldn’t process your request. Please try again later.", 
+        sender: 'bot', 
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), 
+        avatar: '/lociware_logo2.png' 
+      };
+      setMessages(prevMessages => [...prevMessages, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handlePreviousMessages = () => setShowPrevious(!showPrevious);
@@ -47,7 +76,7 @@ const Chatbot = () => {
 
   return (
     <div className="chatbot-container">
-      {/* Chatbot Toggle Button */}
+      {/* Chatbot Toggle Button - Only icon, larger size */}
       <motion.button 
         className="chat-toggle" 
         onClick={toggleChat}
@@ -55,7 +84,7 @@ const Chatbot = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        💬 Chat with us
+        💬
       </motion.button>
 
       {/* Chat Window */}
@@ -67,7 +96,7 @@ const Chatbot = () => {
       >
         <div className="chat-header">
           <button className="close-btn" onClick={toggleChat}>×</button>
-          <img src="/lociware_logo2.png" alt="Bot Avatar" className="avatar" /> {/* Using lociware_logo2.png consistently */}
+          <img src="/lociware_logo2.png" alt="Bot Avatar" className="avatar" />
           <div className="header-text">
             <h3>Hi there 👋</h3>
             <p>We typically reply within a few minutes.</p>
@@ -106,6 +135,19 @@ const Chatbot = () => {
               </div>
             </motion.div>
           ))}
+          {isLoading && (
+            <motion.div 
+              className="message bot"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <img src="/lociware_logo2.png" alt="Bot Avatar" className="message-avatar" />
+              <div className="message-content">
+                <p>Typing...</p>
+              </div>
+            </motion.div>
+          )}
         </div>
 
         <button className="previous-messages" onClick={handlePreviousMessages}>
@@ -119,9 +161,11 @@ const Chatbot = () => {
             value={userMessage}
             onChange={(e) => setUserMessage(e.target.value)}
             className="message-input"
+            disabled={isLoading}
           />
-          <button type="submit" className="send-btn">😊</button>
+          <button type="submit" className="send-btn" disabled={isLoading}>✈️</button>
         </form>
+        <p className="powered-by">POWERED BY Tidio</p>
       </motion.div>
     </div>
   );
