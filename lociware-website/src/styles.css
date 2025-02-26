@@ -29,7 +29,7 @@ h1, h2, h3, h4, h5, h6, p {
   }
 }
 
-/* Navbar Styles */
+/* Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -44,7 +44,7 @@ h1, h2, h3, h4, h5, h6, p {
   z-index: 1000;
 }
 
-/* Adjust spacing for fixed navbar */
+/* Fix body padding for fixed navbar */
 body {
   padding-top: 70px;
 }
@@ -72,20 +72,20 @@ body {
   display: flex;
   gap: 24px;
   font-size: large;
-  font-weight: bold; /* Make font bold */
+  font-weight: bold;
   margin-left: auto;
   margin-right: 25px;
   align-items: center;
 }
 
-.nav-links li a, .nav-links li .nav-link {
+.nav-links li span, .nav-links li a {
   color: #4a4a4a;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.nav-links li a:hover, .nav-links li .nav-link:hover, .nav-links li .nav-link.active {
-  color: #0c3f6c; /* Dark blue for hover and active states */
+.nav-links li span:hover, .nav-links li a:hover {
+  color: #0c3f6c;
 }
 
 /* Hamburger */
@@ -97,6 +97,8 @@ body {
   width: 30px;
   height: 25px;
   margin-right: 40px;
+  position: relative;
+  z-index: 1001; /* Ensure it is above other elements */
 }
 
 .hamburger .bar {
@@ -132,8 +134,8 @@ body {
     position: fixed;
     top: 60px;
     right: 0;
-    width: 250px; /* Fixed width for the sidebar */
-    height: 100vh; /* Full height */
+    width: 250px;
+    height: 100vh;
     margin-top: 45px;
     background-color: white;
     box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
@@ -148,17 +150,18 @@ body {
     text-align: left;
   }
 
-  .nav-links li a, .nav-links li .nav-link {
+  .nav-links li span, .nav-links li a {
     font-size: 18px;
-    font-weight: bold; /* Bold font for mobile too */
+    font-weight: bold;
     color: #333;
     display: block;
   }
 
-  .nav-links li a:hover, .nav-links li .nav-link:hover, .nav-links li .nav-link.active {
-    color: #0c3f6c; /* Dark blue for hover and active states on mobile */
+  .nav-links li span:hover, .nav-links li a:hover {
+    color: #0c3f6c;
   }
 }
+
 
 /* Hero Section Styles */
 .hero {
