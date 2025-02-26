@@ -130,7 +130,7 @@
 /* Big Card Styling */
 .big-feedback-card {
   position: relative;
-  max-width: 900px;
+  max-width: 1200px; /* Increased from 900px to make the image wider */
   margin: 40px auto;
   overflow: hidden;
   border-radius: 10px;
@@ -138,8 +138,11 @@
 }
 
 .big-card-image {
-  width: 100%;
-  height: auto;
+  width: 100%; /* Full width of container */
+  max-width: 1200px; /* Increased maximum width to match container, making the image wider */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Remove any default inline spacing */
+  object-fit: cover; /* Ensure the image covers the area without stretching unnaturally */
 }
 
 .big-card-overlay {
@@ -192,12 +195,12 @@
   }
 
   .big-feedback-card {
-    max-width: 100%;
-    width: 100%;
+    max-width: 100%; /* Full width on mobile, but capped to prevent overflow */
+    margin: 20px auto;
   }
 
   .big-card-image {
-    width: 100%;
+    max-width: 100%; /* Full width on mobile, maintaining responsiveness */
     height: auto;
   }
 }
@@ -218,7 +221,6 @@
 
   .carousel-arrow {
     font-size: 1.5rem;
-   
   }
 
   .feedback-card p {
@@ -238,6 +240,11 @@
   .big-feedback-card {
     max-width: 100%;
     margin: 20px auto;
+  }
+
+  .big-card-image {
+    max-width: 100%; /* Full width on very small screens */
+    height: auto;
   }
 
   .carousel-arrow.left {
