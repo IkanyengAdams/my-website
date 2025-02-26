@@ -5,6 +5,15 @@ export default function Values() {
   const ref = React.useRef(null);
   const isInView = useInView(ref, { triggerOnce: false, margin: "-100px" });
 
+  // Explanations for each value in my own words
+  const valueExplanations = {
+    "Botho Pele": "Prioritizing compassion and community well-being.",
+    "Safety": "Ensuring the security and protection of everyone involved.",
+    "Integrity": "Upholding honesty and ethical principles in all actions.",
+    "Honesty": "Being truthful and transparent in every interaction.",
+    "Respect": "Valuing others and fostering mutual understanding."
+  };
+
   return (
     <section className="values" ref={ref}>
       <div className="values-card">
@@ -34,30 +43,39 @@ export default function Values() {
         </div>
       </div>
 
-      {/* Circular Layout for Values */}
-      <div className="values-circle-container">
-        {/* Big Circle (Center) */}
-        <motion.div
-          className="big-circle"
-          initial={{ scale: 0 }}
-          animate={isInView ? { scale: 1 } : { scale: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          Our Values
-        </motion.div>
-
-        {/* Small Circles */}
-        {["Botho Pele", "Safety", "Integrity", "Honesty", "Respect"].map((value, index) => (
+      {/* Circular Layout for Values - Moved to bottom, far left with explanations next to them */}
+      <div className="values-circle-layout">
+        <div className="values-circle-container">
+          {/* Big Circle (Center) */}
           <motion.div
-            key={index}
-            className="small-circle"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ delay: 0.2 * (index + 1), duration: 0.5 }}
+            className="big-circle"
+            initial={{ scale: 0 }}
+            animate={isInView ? { scale: 1 } : { scale: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            {value}
+            Our Values
           </motion.div>
-        ))}
+
+          {/* Small Circles */}
+          {["Botho Pele", "Safety", "Integrity", "Honesty", "Respect"].map((value, index) => (
+            <motion.div
+              key={index}
+              className="small-circle"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+              transition={{ delay: 0.2 * (index + 1), duration: 0.5 }}
+            >
+              {value}
+            </motion.div>
+          ))}
+        </div>
+        <div className="explanation-container">
+          {["Botho Pele", "Safety", "Integrity", "Honesty", "Respect"].map((value, index) => (
+            <p key={index} className="value-explanation">
+              {value}: {valueExplanations[value]}
+            </p>
+          ))}
+        </div>
       </div>
     </section>
   );

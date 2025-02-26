@@ -29,7 +29,6 @@ h1, h2, h3, h4, h5, h6, p {
   }
 }
 
-
 /* Navbar Styles */
 .navbar {
   display: flex;
@@ -157,7 +156,6 @@ body {
   }
 }
 
-
 /* Hero Section Styles */
 .hero {
   position: relative;
@@ -230,7 +228,6 @@ body {
     font-size: 20px; /* Reduce icon size */
   }
 }
-
 
 /* Contact Section */
 .contact-section {
@@ -541,7 +538,6 @@ body {
   transform: translateY(0); /* Slide to original position */
 }
 
-
 /* Social Icons Styling */
 .social-icons {
   display: flex;
@@ -670,7 +666,7 @@ p {
   }
 }
 
-
+/* info section */
 .info {
   padding: 10px 20px;
   background-color: #f5f5f5; /* Light background color to match website */
@@ -1067,6 +1063,7 @@ p {
 /* Values Section */
 .values {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 50px 20px;
@@ -1087,6 +1084,7 @@ p {
   padding: 50px 40px; /* Increased padding for more spacious card */
   gap: 30px;
   transition: transform 0.3s ease-in-out;
+  margin-bottom: 30px; /* Add spacing before circles on both screens */
 }
 
 .values-card:hover {
@@ -1138,7 +1136,107 @@ p {
   color: #0c3f6c;
 }
 
-/* Responsive Design */
+/* Circular Layout - Moved to bottom, far left with explanations on right */
+.values-circle-layout {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between; /* Space between circles (left) and explanations (right) */
+  align-items: center;
+  margin-top: 0; /* Remove top margin to place at bottom */
+  padding: 20px; /* Add padding for spacing */
+}
+
+/* Circle Container - Far left, maintain circular layout */
+.values-circle-container {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  display: flex;
+  justify-content: flex-start; /* Align circles to far left */
+  align-items: center;
+}
+
+/* Big Circle */
+.big-circle {
+  width: 140px;
+  height: 140px;
+  margin-left: 90px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #0c3f6c, #0c3f6c);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  position: absolute;
+  z-index: 2;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3), 
+              inset -2px -2px 5px rgba(255, 255, 255, 0.2), 
+              inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  left: 0; /* Position big circle at far left */
+  transform: translateX(0); /* Remove centering transform */
+}
+
+.big-circle:hover {
+  transform: scale(1.05); /* Only scale on hover */
+}
+
+/* Small Circles - Positioned relative to big circle, far left */
+.small-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #0c3f6c, #0c3f6c);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: bold;
+  position: absolute;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3), 
+              inset -2px -2px 5px rgba(255, 255, 255, 0.2), 
+              inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.small-circle:hover {
+  transform: scale(1.1);
+}
+
+/* Reposition Small Circles - Far left, maintain vertical positioning and circular layout */
+.small-circle:nth-child(2) { top: -1%; left: 35%; transform: translateX(-50%); }  /* Top */
+.small-circle:nth-child(3) { top: 73%; left: 58%; transform: translateY(-50%); }  /* Right */
+.small-circle:nth-child(4) { bottom: 0%; left: 18%; transform: translateX(-50%); }  /* Bottom */
+.small-circle:nth-child(5) { top: 35%; left: -1%; transform: translateY(-50%); }  /* Left */
+.small-circle:nth-child(6) { top: 33%; left: 73%; }  /* Diagonal Top Right */
+.small-circle:nth-child(7) { bottom: 15%; left: 75%; }  /* Diagonal Bottom Right */
+.small-circle:nth-child(8) { bottom: 15%; right: 75%; }  /* Diagonal Bottom Left */
+.small-circle:nth-child(9) { top: 15%; right: 75%; }  /* Diagonal Top Left */
+
+/* Explanation Container - Far right, next to circles */
+.explanation-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+  gap: 15px; /* Spacing between explanations */
+  padding-left: 20px; /* Space from circles */
+  text-align: left;
+}
+
+.value-explanation {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+}
+
+/* Responsive Design - Keep small screen styling unchanged, ensure circles are at bottom */
 @media (max-width: 768px) {
   .values-card {
     flex-direction: column; /* Stack elements vertically */
@@ -1154,6 +1252,42 @@ p {
   .values-image-container {
     width: 100%;
     margin-bottom: 20px; /* Adds spacing */
+  }
+
+  .values-circle-layout {
+    flex-direction: column; /* Stack circles and explanations vertically on small screens */
+    align-items: flex-start; /* Align to left */
+    padding: 10px; /* Reduce padding on small screens */
+  }
+
+  .values-circle-container {
+    width: 280px; /* Reduced size for small screens */
+    height: 280px;
+    margin-left: 80px;
+    margin-bottom: 20px; /* Space before explanations */
+    justify-content: center; /* Center circles horizontally on small screens */
+  }
+
+  .big-circle {
+    width: 120px;
+    height: 120px;
+    margin-left: 80px;
+    font-size: 1.2rem;
+  }
+
+  .small-circle {
+    width: 75px;
+    height: 75px;
+    font-size: 0.75rem;
+  }
+
+  .explanation-container {
+    padding-left: 0; /* Remove padding from explanations on small screens */
+    width: 100%; /* Full width for explanations */
+  }
+
+  .value-explanation {
+    font-size: 0.9rem; /* Slightly smaller text on mobile */
   }
 
   /* Show image below title on mobile */
@@ -1182,106 +1316,6 @@ p {
 section.values {
   padding: 50px 20px;
   background-color: #f0f4f8; /* Slightly lighter background for contrast */
-}
-
-/* Circular Layout */
-.values-circle-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  position: relative;
-  width: 400px;
-  height: 400px;
-  margin-top: 50px;
-}
-
-/* Circle Container */
-.values-circle-container {
-  position: relative;
-  width: 320px;
-  height: 320px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Big Circle */
-.big-circle {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  background: linear-gradient(145deg, #0c3f6c, #0c3f6c);
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.3rem;
-  font-weight: bold;
-  position: absolute;
-  z-index: 2;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3), 
-              inset -2px -2px 5px rgba(255, 255, 255, 0.2), 
-              inset 2px 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.big-circle:hover {
-  transform: scale(1.05);
-}
-
-/* Small Circles */
-.small-circle {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background: linear-gradient(145deg, #0c3f6c, #0c3f6c);
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 0.85rem;
-  font-weight: bold;
-  position: absolute;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3), 
-              inset -2px -2px 5px rgba(255, 255, 255, 0.2), 
-              inset 2px 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.small-circle:hover {
-  transform: scale(1.1);
-}
-
-/* Positioning Small Circles Closer to the Big Circle */
-.small-circle:nth-child(2) { top: -1%; left: 35%; transform: translateX(-50%); }  /* Top */
-.small-circle:nth-child(3) { top: 73%; left: 58%; transform: translateY(-50%); }  /* Right */
-.small-circle:nth-child(4) { bottom: 0%; left: 18%; transform: translateX(-50%); }  /* Bottom */
-.small-circle:nth-child(5) { top: 35%; left: -1%; transform: translateY(-50%); }  /* Left */
-.small-circle:nth-child(6) { top: 33%; left: 73%; }  /* Diagonal Top Right */
-.small-circle:nth-child(7) { bottom: 15%; left: 75%; }  /* Diagonal Bottom Right */
-.small-circle:nth-child(8) { bottom: 15%; right: 75%; }  /* Diagonal Bottom Left */
-.small-circle:nth-child(9) { top: 15%; right: 75%; }  /* Diagonal Top Left */
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .values-circle-container {
-    width: 280px;
-    height: 280px;
-  }
-
-  .big-circle {
-    width: 120px;
-    height: 120px;
-    font-size: 1.2rem;
-  }
-
-  .small-circle {
-    width: 75px;
-    height: 75px;
-    font-size: 0.75rem;
-  }
 }
 
 /* Team Members Section */
