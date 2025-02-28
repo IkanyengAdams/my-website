@@ -34,30 +34,37 @@ h1, h2, h3, h4, h5, h6, p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px;
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px 40px; /* Keep padding for elegance */
+  background: linear-gradient(90deg, #ffffff, #f5f5f5); /* Keep subtle gradient */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Keep softer shadow */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
+  border-bottom: 2px solid #e0e0e0; /* Keep subtle border */
 }
 
 /* Fix body padding for fixed navbar */
 body {
-  padding-top: 70px;
+  padding-top: 80px; /* Keep to match navbar height */
 }
 
 /* Logo */
 .logo {
   flex: 0 1 auto;
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
 }
 
 .logo-img {
   width: 300px;
   height: auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1)); /* Keep subtle shadow */
 }
 
 /* Nav Links */
@@ -70,22 +77,54 @@ body {
 
 .nav-links.desktop {
   display: flex;
-  gap: 24px;
-  font-size: large;
-  font-weight: bold;
+  gap: 15px; /* Decreased from 30px for tighter spacing */
+  font-size: 16px; /* Decreased from 18px for smaller text */
+  font-weight: 500; /* Keep medium weight */
   margin-left: auto;
   margin-right: 25px;
   align-items: center;
 }
 
-.nav-links li span, .nav-links li a {
-  color: #4a4a4a;
+.nav-links.mobile {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  width: 250px;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.95); /* Keep semi-transparent white */
+  box-shadow: -6px 0 15px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  z-index: 999;
+  border-radius: 0 0 0 20px; /* Keep rounded left corner */
+  backdrop-filter: blur(10px); /* Keep blur effect */
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Decreased from 20px for tighter spacing */
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Decreased from 12px for tighter spacing between icon and text */
+  color: #0c3f6c;
   text-decoration: none;
-  transition: color 0.3s ease;
+  margin-right: 10px;
+  font-size: 14px; /* Decreased from 16px for smaller text in mobile */
+  font-weight: 600; /* Keep bold for emphasis */
+  text-transform: uppercase; /* Keep uppercase */
+  padding: 10px 14px; /* Decreased padding for smaller size */
+  transition: color 0.3s ease, transform 0.3s ease;
+  border-radius: 8px; /* Keep subtle rounding */
+}
+
+.nav-item:hover, .nav-item:focus {
+  color: #4CAF50; /* Keep green hover color */
+  transform: scale(1.05); /* Keep slight scale on hover */
+  background: rgba(76, 175, 80, 0.1); /* Keep subtle green background */
 }
 
 .nav-links li span:hover, .nav-links li a:hover {
-  color: #0c3f6c;
+  color: #4CAF50; /* Keep consistent hover color */
 }
 
 /* Hamburger */
@@ -93,30 +132,31 @@ body {
   display: none;
   cursor: pointer;
   flex-direction: column;
-  gap: 5px;
-  width: 30px;
-  height: 25px;
-  margin-right: 40px;
+  gap: 6px;
+  width: 40px; /* Keep larger hamburger */
+  height: 30px;
+  margin-right: 20px;
   position: relative;
-  z-index: 1001; /* Ensure it is above other elements */
+  z-index: 1001;
 }
 
-.hamburger .bar {
-  width: 30px;
+.hamburger-line {
+  width: 100%;
   height: 4px;
   background-color: #333;
-  transition: all 0.5s ease;
+  border-radius: 2px;
+  transition: all 0.3s ease;
 }
 
-.hamburger.open .bar:nth-child(1) {
+.hamburger.open .hamburger-line:nth-child(1) {
   transform: rotate(45deg) translate(8px, 8px);
 }
 
-.hamburger.open .bar:nth-child(2) {
+.hamburger.open .hamburger-line:nth-child(2) {
   opacity: 0;
 }
 
-.hamburger.open .bar:nth-child(3) {
+.hamburger.open .hamburger-line:nth-child(3) {
   transform: rotate(-45deg) translate(8px, -8px);
 }
 
@@ -127,41 +167,25 @@ body {
   }
 
   .nav-links.desktop {
-    display: none; /* Hide desktop links on small screens */
+    display: none;
   }
 
-  .nav-links {
-    position: fixed;
-    top: 60px;
-    right: 0;
-    width: 250px;
-    height: 100vh;
-    margin-top: 45px;
-    background-color: white;
-    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    z-index: 999;
+  .nav-links.mobile {
+    right: 0; /* Slide in from right */
+    margin-top: 96px;
   }
 
-  .nav-links li {
-    padding: 15px 0;
-    text-align: left;
+  .navbar {
+    padding: 16px 20px; /* Keep padding for mobile */
   }
 
-  .nav-links li span, .nav-links li a {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    display: block;
-  }
-
-  .nav-links li span:hover, .nav-links li a:hover {
-    color: #0c3f6c;
+  .logo-img {
+    width: 250px; /* Keep slightly smaller logo on mobile */
   }
 }
 
+/* Ensure icons are loaded (you'll need Font Awesome or similar) */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 
 /* Hero Section Styles */
 .hero {
