@@ -32,7 +32,7 @@ const services = [
   { 
     title: "Executive Travel", 
     description: "High-end travel solutions for executives, combining luxury and reliability.",
-    images: ["/image17.png"] // Single image
+    images: ["/group-photo2.jpg"] // Single image
   }
 ];
 
