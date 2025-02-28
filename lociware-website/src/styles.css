@@ -173,7 +173,7 @@ body {
   align-items: center;
   text-align: center;
   color: white;
-  background-image: url('../public/image3.jpg'); /* Fixed single background image */
+  background-image: url('../public/hero-image.jpg'); /* Fixed single background image */
   background-size: cover;
   background-position: center;
   padding: 20px;
@@ -1453,31 +1453,19 @@ section.values {
   }
 }
 
-/* General Styles */
+/* General Styles remain unchanged */
 .services-section {
   text-align: center;
   padding: 80px 20px;
   background-color: #f8f8f8;
 }
 
-.services-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #002244;
-  margin-bottom: 20px;
-}
+/* ... Keep existing title and subtitle styles ... */
 
-.services-subtitle {
-  font-size: 1.2rem;
-  margin-bottom: 40px;
-  color: #555;
-}
-
-/* Grid Layout - Responsive for all screens */
+/* Modified Grid Layout - Larger cards */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); /* Slightly larger cards */
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Increased from 380px */
   gap: 40px;
   justify-content: center;
   max-width: 1400px;
@@ -1493,57 +1481,34 @@ section.values {
   background: white;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-15px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+  min-height: 550px; /* Added minimum height for consistency */
 }
 
 /* Card Content */
 .card-content {
   padding: 25px;
-  height: 500px; /* Taller height for better layout */
+  height: 550px; /* Increased from 500px */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
 }
 
-/* Service Title */
-.service-title {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #002244;
-  margin-bottom: 15px;
-  text-align: center;
-  text-transform: uppercase;
-}
+/* ... Keep existing title and description styles ... */
 
-/* Service Description */
-.service-description {
-  font-size: 1rem;
-  color: #555;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  text-align: center;
-  flex: 1; /* Allow description to grow and push image down */
-}
-
-/* Image Containers */
+/* Modified Image Containers - Same size for both */
 .image-container {
   width: 100%;
+  height: 350px; /* Increased from 300px and made consistent */
 }
 
 .image-container.carousel {
-  height: 300px; /* Fixed height for carousel */
   position: relative;
   overflow: hidden;
   border-radius: 10px;
 }
 
 .image-container.single {
-  height: 300px; /* Match carousel height for single images */
   position: relative;
   overflow: hidden;
   border-radius: 10px;
@@ -1551,173 +1516,105 @@ section.values {
 
 /* Carousel Styles */
 .image-slide {
-  height: 100%;
+  height: 350px; /* Match container height */
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 /* Service Image (Carousel) */
 .service-image {
   width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensure images fill the space without stretching unnaturally */
+  height: 350px; /* Fixed height to match container */
+  object-fit: cover;
   border-radius: 10px;
   transition: transform 0.3s ease;
-}
-
-.service-card:hover .service-image {
-  transform: scale(1.1);
 }
 
 /* Single Service Image */
 .single-service-image {
   width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensure single images fill the space without stretching */
+  height: 350px; /* Fixed height to match carousel */
+  object-fit: cover;
   border-radius: 10px;
   transition: transform 0.3s ease;
 }
 
-.service-card:hover .single-service-image {
-  transform: scale(1.1); /* Match hover effect of carousel images */
-}
-
-/* Next Image Preview on Hover */
-.next-image-preview {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100px; /* Smaller preview size */
-  height: 75px; /* Proportional height */
-  overflow: hidden;
-  z-index: 10;
-}
-
-.preview-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 5px;
-  opacity: 0.5;
-  transition: opacity 0.3s ease;
-}
-
-/* Custom Arrow Styles for react-slick - Higher and Larger */
+/* Modified Custom Arrow Styles - Larger and always visible */
 .custom-arrow {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6); /* Slightly darker for better visibility */
   border: none;
   border-radius: 50%;
-  width: 50px; /* Larger arrows */
-  height: 50px; /* Larger arrows */
-  display: flex;
+  width: 60px; /* Increased from 50px */
+  height: 60px; /* Increased from 50px */
+  display: flex !important; /* Force display on all screens */
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 24px; /* Larger arrow symbols */
+  font-size: 30px; /* Increased from 24px */
   cursor: pointer;
   position: absolute;
-  top: 20%; /* Higher position (closer to top) */
+  top: 50%; /* Centered vertically */
   transform: translateY(-50%);
-  z-index: 1;
-  transition: background-color 0.3s ease;
+  z-index: 10; /* Increased z-index */
+  opacity: 1; /* Ensure visibility */
+  transition: background-color 0.3s ease, opacity 0.3s ease;
 }
 
 .custom-arrow:hover {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
+/* Ensure arrows stay visible */
 .custom-arrow.prev {
-  left: 10px;
+  left: 15px; /* Slightly more padding from edge */
 }
 
 .custom-arrow.next {
-  right: 10px;
+  right: 15px; /* Slightly more padding from edge */
 }
 
-/* Custom Dots (Indicators) for react-slick */
-.custom-dots {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-}
+/* ... Keep existing dot styles ... */
 
-.dot {
-  width: 10px;
-  height: 10px;
-  background: #ccc;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.dot:hover, .dot.slick-active {
-  background: #002244; /* Match title color for active/indicator */
-}
-
-/* Ensure arrows and dots are visible and styled on small screens */
-.custom-arrow span {
-  font-size: 24px;
-}
-
-/* Responsive Design */
+/* Modified Responsive Design */
 @media (max-width: 768px) {
   .services-grid {
-    grid-template-columns: 1fr; /* Stack cards vertically on small screens */
-    gap: 25px;
-  }
-
-  .services-title {
-    font-size: 2rem;
-  }
-
-  .services-subtitle {
-    font-size: 1rem;
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
 
   .service-card {
-    height: auto; /* Auto height on small screens for flexibility */
+    min-height: 500px; /* Adjusted for mobile */
   }
 
   .card-content {
-    height: 450px; /* Adjusted height for smaller screens */
-    padding: 15px;
+    height: 500px; /* Adjusted from 450px */
+    padding: 20px;
   }
 
-  .service-title {
-    font-size: 1.5rem;
-  }
-
-  .service-description {
-    font-size: 0.9rem;
-  }
-
-  .image-container.carousel, .image-container.single {
-    height: 250px; /* Reduced height for both carousel and single images on small screens */
+  .image-container,
+  .image-container.carousel,
+  .image-container.single,
+  .image-slide,
+  .service-image,
+  .single-service-image {
+    height: 300px; /* Consistent reduced height for mobile */
   }
 
   .custom-arrow {
-    width: 40px; /* Slightly smaller on mobile */
-    height: 40px; /* Slightly smaller on mobile */
-    font-size: 20px; /* Slightly smaller arrows */
-    top: 25%; /* Adjusted higher position on mobile */
-  }
-
-  .custom-arrow span {
-    font-size: 20px; /* Slightly smaller arrow symbols on mobile */
-  }
-
-  .next-image-preview {
-    width: 80px; /* Smaller preview on mobile */
-    height: 60px; /* Proportional height */
+    width: 50px; /* Slightly larger than before on mobile */
+    height: 50px;
+    font-size: 24px; /* Larger than before on mobile */
+    display: flex !important; /* Force display on mobile */
+    opacity: 1 !important; /* Force visibility on mobile */
   }
 }
 
+/* Add this to ensure arrows are always visible across all screen sizes */
+@media (max-width: 1024px) {
+  .custom-arrow {
+    display: flex !important;
+    opacity: 1 !important;
+  }
+}
 .privacy-policy {
   max-width: 800px;
   margin: 180px auto 50px; /* Increased top margin to 80px to account for navbar height */

@@ -39,7 +39,7 @@ export default function Navbar({ navbarRef, infoRef, servicesRef, safetyRef, con
   return (
     <nav className="navbar">
       <div className="logo" onClick={() => scrollToSection(navbarRef)}>
-        <img src="/lociware_logo2.png" alt="Logo" className="logo-img" />
+        <img src="/lociware_logo.png" alt="Logo" className="logo-img" />
       </div>
       <div className={`hamburger ${isMenuOpen ? "open" : ""}`} onClick={toggleMenu}>
         <div className="bar"></div>

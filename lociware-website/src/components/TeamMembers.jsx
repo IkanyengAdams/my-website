@@ -15,17 +15,17 @@ export default function TeamMembers() {
       {/* First Row - Always Visible */}
       <div className="team-cards">
         <div className="team-card">
-          <img src="/team1.png" alt="Team Member 1" className="team-image" />
+          <img src="/Sinazo_Vuzane2.jpg" alt="Team Member 1" className="team-image" />
           <h3>SINAZO VUZANE</h3>
           <p>General Manager</p>
         </div>
         <div className="team-card">
-          <img src="/team3.png" alt="Team Member 2" className="team-image" />
+          <img src="/Jacobus_Mudau2.jpg" alt="Team Member 2" className="team-image" />
           <h3>JACOBUS MUDAU</h3>
           <p>Operations Manager</p>
         </div>
         <div className="team-card">
-          <img src="/team2.png" alt="Team Member 3" className="team-image" />
+          <img src="/Lebogang_Selao2.jpg" alt="Team Member 3" className="team-image" />
           <h3>LEBOGANG SELAO</h3>
           <p>HSSE Manager</p>
         </div>
@@ -35,17 +35,17 @@ export default function TeamMembers() {
       {showMore && (
         <div className="team-cards more-team">
           <div className="team-card">
-            <img src="/image13.png" alt="Team Member 4" className="team-image" />
+            <img src="/Joseph_Mohomi2.jpg" alt="Team Member 4" className="team-image" />
             <h3>JOSEPH MOHOMI</h3>
             <p>Accounts Manager</p>
           </div>
           <div className="team-card">
-            <img src="/image14.png" alt="Team Member 5" className="team-image" />
+            <img src="/Elijah_Monyela-scaled.jpg" alt="Team Member 5" className="team-image" />
             <h3>ELIJAH MONYELA</h3>
             <p>Team Leader</p>
           </div>
           <div className="team-card">
-            <img src="/image16.png" alt="Team Member 6" className="team-image" />
+            <img src="/Mphile_Dlamini2.jpg" alt="Team Member 6" className="team-image" />
             <h3>MPHILE DLAMINI</h3>
             <p>Office Admin</p>
           </div>
@@ -53,18 +53,18 @@ export default function TeamMembers() {
           <div className="team-card">
             <img src="/team4.png" alt="Team Member 7" className="team-image" />
             <h3>Operational Team</h3>
-            <p>****</p>
+            <p>Team</p>
           </div>
           <div className="team-card">
             <img src="/team5.png" alt="Team Member 8" className="team-image" />
             <h3>Operational Team</h3>
-            <p>****</p>
+            <p>Team</p>
             
           </div>
           <div className="team-card">
-            <img src="/image17.png" alt="Team Member 9" className="team-image" />
+            <img src="/lociware-ops-team.jpg" alt="Team Member 9" className="team-image" />
             <h3>Operational Team</h3>
-            <p>****</p>
+            <p>Team</p>
             
           </div>
         </div>
