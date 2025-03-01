@@ -1,294 +1,349 @@
 .chatbot-container {
-    position: fixed;
-    bottom: 20px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.chat-toggle {
+  background: #4CAF50; /* Green background */
+  color: white;
+  border: none;
+  border-radius: 25px; /* Slightly larger radius for a bigger button */
+  padding: 15px 15px; /* Adjusted padding to fit larger icon */
+  font-size: 24px; /* Larger icon size */
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Slightly larger shadow for emphasis */
+  transition: transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px; /* Fixed width for larger icon button */
+  height: 60px; /* Fixed height for larger icon button */
+}
+
+.chat-toggle:hover {
+  transform: scale(1.1); /* Slightly larger hover effect */
+}
+
+.chat-window {
+  width: 400px; /* Larger chat window */
+  background: white;
+  border-radius: 15px; /* Slightly larger radius for a bigger look */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Larger shadow for emphasis */
+  margin-right: 60px;
+  position: absolute;
+  bottom: 80px; /* Adjusted to accommodate larger toggle button */
+  right: 0;
+  transform: translateX(300px);
+  opacity: 0;
+  overflow: hidden;
+}
+
+.chat-window.open {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.chat-header {
+  background: #4CAF50; /* Green background */
+  padding: 15px; /* Larger padding for a bigger header */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  position: relative;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px; /* Larger close button */
+  color: white;
+  cursor: pointer;
+  padding: 0 15px; /* Larger padding */
+}
+
+.avatar {
+  width: 40px; /* Fixed width */
+  height: 40px; /* Fixed height */
+  border-radius: 50%;
+  margin-right: 15px; /* Larger margin for better spacing */
+  object-fit: contain; /* Maintain aspect ratio, fit within the circle without stretching */
+  object-position: center; /* Center the image within the circle */
+}
+
+.header-text {
+  flex: 1;
+  text-align: left;
+}
+
+.header-text h3 {
+  margin: 0;
+  font-size: 18px; /* Slightly larger text */
+}
+
+.header-text p {
+  margin: 0;
+  font-size: 14px; /* Slightly larger text */
+  opacity: 0.8;
+}
+
+.options-btn {
+  background: none;
+  border: none;
+  font-size: 24px; /* Larger options button */
+  color: white;
+  cursor: pointer;
+  padding: 0 15px; /* Larger padding */
+}
+
+.chat-messages {
+  padding: 20px; /* Larger padding for more space */
+  height: 500px; /* Increased height to prevent text overlap for more messages */
+  overflow-y: auto; /* Ensure scrolling for long or many messages */
+  background: #f9f9f9;
+}
+
+.message {
+  display: flex;
+  margin-bottom: 25px; /* Increased margin for better spacing between messages */
+  align-items: flex-start;
+  max-width: 100%; /* Ensure messages don’t exceed container width */
+}
+
+.message.bot {
+  justify-content: flex-start;
+}
+
+.message.user {
+  justify-content: flex-end;
+}
+
+.message-avatar {
+  width: 30px; /* Smaller width for message avatars */
+  height: 30px; /* Smaller height for message avatars */
+  border-radius: 50%;
+  margin-right: 15px; /* Increased margin for better spacing */
+  object-fit: contain; /* Maintain aspect ratio, fit within the circle without stretching */
+  object-position: center; /* Center the image within the circle */
+}
+
+.message-content {
+  max-width: 75%; /* Slightly wider for a larger look, but capped to prevent overflow */
+  padding: 15px 15px; /* Increased padding for more space */
+  border-radius: 12px; /* Slightly larger radius */
+  font-size: 15px; /* Slightly larger text */
+  word-wrap: break-word; /* Break long words to prevent overflow */
+  overflow-wrap: break-word; /* Ensure text wraps properly */
+  white-space: normal; /* Prevent text from staying on one line */
+  max-height: 150px; /* Limit height to prevent excessive growth, with scrolling if needed */
+  overflow-y: auto; /* Allow scrolling within message content if text is very long */
+}
+
+.message.bot .message-content {
+  background: #e3f2fd; /* Light blue for bot messages */
+  color: #333;
+}
+
+.message.user .message-content {
+  background: #4CAF50; /* Green for user messages */
+  color: white;
+}
+
+.message-time {
+  display: block;
+  font-size: 12px; /* Slightly larger time text */
+  color: #666;
+  margin-top: 5px;
+}
+
+.previous-messages {
+  background: none;
+  border: none;
+  font-size: 14px; /* Slightly larger text */
+  color: #666;
+  cursor: pointer;
+  padding: 12px; /* Larger padding */
+  text-align: center;
+  width: 100%;
+  display: block;
+  margin-top: 15px; /* Larger margin */
+}
+
+.previous-messages:hover {
+  color: #4CAF50;
+}
+
+.chat-input {
+  display: flex;
+  padding: 15px; /* Larger padding */
+  background: white;
+  border-top: 2px solid #eee; /* Slightly thicker border */
+}
+
+.message-input {
+  flex: 1;
+  padding: 12px; /* Larger padding */
+  border: none;
+  border-radius: 25px; /* Slightly larger radius */
+  font-size: 15px; /* Slightly larger text */
+  background: #f0f0f0;
+  outline: none;
+}
+
+.send-btn {
+  background: none;
+  border: none;
+  font-size: 24px; /* Larger send icon (matches original emoji size) */
+  color: #666;
+  cursor: pointer;
+  margin-left: 15px; /* Larger margin */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-btn:hover {
+  color: #4CAF50;
+}
+
+.send-btn:disabled {
+  color: #999; /* Dimmed color when disabled */
+  cursor: not-allowed;
+}
+
+.powered-by {
+  font-size: 12px; /* Slightly larger text */
+  color: #666;
+  text-align: center;
+  padding: 8px; /* Larger padding */
+  background: #f0f0f0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .chatbot-container {
+    bottom: 60px; /* Moved lower from 20px for better visibility on mobile */
+    right: 15px;
+    z-index: 900; /* Lowered z-index to ensure navbar (z-index: 1000) and hamburger (z-index: 1001) are above */
+  }
+
+  .chat-toggle {
+    bottom: 60px; /* Moved lower from 20px, matching the container */
+    right: 15px;
+    position: fixed; /* Fixed position for mobile */
+    width: 50px; /* Slightly smaller on mobile */
+    height: 50px; /* Slightly smaller on mobile */
+    padding: 10px; /* Adjusted padding */
+    font-size: 20px; /* Slightly smaller icon */
+  }
+
+  .chat-window {
+    width: 300px; /* Slightly smaller but still larger than original */
+    top: auto; /* Remove top positioning */
+    bottom: 120px; /* Moved lower from 80px to position above the lowered toggle button */
+    right: 15px; /* Align with toggle button */
+  }
+
+  .chat-messages {
+    height: 400px; /* Adjusted height for mobile */
+    padding: 15px;
+  }
+
+  .avatar {
+    width: 35px; /* Slightly smaller on mobile */
+    height: 35px; /* Slightly smaller on mobile */
+  }
+
+  .message-avatar {
+    width: 25px; /* Smaller message avatars on mobile */
+    height: 25px; /* Smaller message avatars on mobile */
+  }
+
+  .message-content {
+    max-width: 65%; /* Slightly narrower on mobile */
+    padding: 10px; /* Adjusted padding */
+    font-size: 14px; /* Slightly smaller text */
+    max-height: 120px; /* Reduced max-height on mobile */
+  }
+
+  .message-time {
+    font-size: 10px; /* Slightly smaller time text */
+  }
+
+  .previous-messages {
+    font-size: 12px; /* Slightly smaller text */
+    padding: 10px; /* Adjusted padding */
+    margin-top: 8px; /* Adjusted margin */
+  }
+
+  .message-input {
+    padding: 10px; /* Adjusted padding */
+    font-size: 14px; /* Slightly smaller text */
+  }
+
+  .send-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 18px; /* Slightly smaller send icon */
+    margin-left: 10px; /* Adjusted margin */
+  }
+
+  .powered-by {
+    font-size: 10px; /* Slightly smaller text */
+    padding: 5px; /* Adjusted padding */
+  }
+}
+
+/* New Media Query for 781px to 1076px */
+@media (min-width: 781px) and (max-width: 1076px) {
+  .chatbot-container {
+    bottom: 120px; /* Move up from 20px to position above the hamburger menu */
+    right: 20px;
+    z-index: 900; /* Lowered z-index to ensure navbar (z-index: 1000) and hamburger (z-index: 1001) are above */
+  }
+
+  .chat-toggle {
+    bottom: 260px; /* Move up to match container, positioning above hamburger menu */
+    right: 20px;
+    position: fixed; /* Fixed position for this screen range */
+    width: 60px; /* Keep original size for consistency */
+    height: 60px; /* Keep original size for consistency */
+    padding: 15px; /* Keep original padding */
+    font-size: 24px; /* Keep original icon size */
+  }
+
+  .chat-window {
+    width: 400px; /* Keep original width */
+    bottom: 200px; /* Adjust to position above the raised toggle button */
+    right: 20px; /* Align with toggle button */
+    margin-right: 60px; /* Keep original margin */
+  }
+}
+
+/* Ensure desktop behavior above 1076px */
+@media (min-width: 1077px) {
+  .chatbot-container {
+    bottom: 20px; /* Keep original positioning for desktop */
     right: 20px;
     z-index: 1000;
   }
-  
+
   .chat-toggle {
-    background: #4CAF50; /* Green background */
-    color: white;
-    border: none;
-    border-radius: 25px; /* Slightly larger radius for a bigger button */
-    padding: 15px 15px; /* Adjusted padding to fit larger icon */
-    font-size: 24px; /* Larger icon size */
-    cursor: pointer;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Slightly larger shadow for emphasis */
-    transition: transform 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 60px; /* Fixed width for larger icon button */
-    height: 60px; /* Fixed height for larger icon button */
+    bottom: 20px; /* Keep original positioning for desktop */
+    right: 20px;
+    position: fixed;
+    width: 60px; /* Keep original size */
+    height: 60px; /* Keep original size */
+    padding: 15px; /* Keep original padding */
+    font-size: 24px; /* Keep original icon size */
   }
-  
-  .chat-toggle:hover {
-    transform: scale(1.1); /* Slightly larger hover effect */
-  }
-  
+
   .chat-window {
-    width: 400px; /* Larger chat window */
-    background: white;
-    border-radius: 15px; /* Slightly larger radius for a bigger look */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Larger shadow for emphasis */
-    margin-right: 60px;
-    position: absolute;
-    bottom: 80px; /* Adjusted to accommodate larger toggle button */
+    width: 400px; /* Keep original width */
+    bottom: 80px; /* Keep original positioning */
     right: 0;
-    transform: translateX(300px);
-    opacity: 0;
-    overflow: hidden;
+    margin-right: 60px; /* Keep original margin */
   }
-  
-  .chat-window.open {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  
-  .chat-header {
-    background: #4CAF50; /* Green background */
-    padding: 15px; /* Larger padding for a bigger header */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: white;
-    position: relative;
-  }
-  
-  .close-btn {
-    background: none;
-    border: none;
-    font-size: 24px; /* Larger close button */
-    color: white;
-    cursor: pointer;
-    padding: 0 15px; /* Larger padding */
-  }
-  
-  .avatar {
-    width: 40px; /* Fixed width */
-    height: 40px; /* Fixed height */
-    border-radius: 50%;
-    margin-right: 15px; /* Larger margin for better spacing */
-    object-fit: contain; /* Maintain aspect ratio, fit within the circle without stretching */
-    object-position: center; /* Center the image within the circle */
-  }
-  
-  .header-text {
-    flex: 1;
-    text-align: left;
-  }
-  
-  .header-text h3 {
-    margin: 0;
-    font-size: 18px; /* Slightly larger text */
-  }
-  
-  .header-text p {
-    margin: 0;
-    font-size: 14px; /* Slightly larger text */
-    opacity: 0.8;
-  }
-  
-  .options-btn {
-    background: none;
-    border: none;
-    font-size: 24px; /* Larger options button */
-    color: white;
-    cursor: pointer;
-    padding: 0 15px; /* Larger padding */
-  }
-  
-  .chat-messages {
-    padding: 20px; /* Larger padding for more space */
-    height: 500px; /* Increased height to prevent text overlap for more messages */
-    overflow-y: auto; /* Ensure scrolling for long or many messages */
-    background: #f9f9f9;
-  }
-  
-  .message {
-    display: flex;
-    margin-bottom: 25px; /* Increased margin for better spacing between messages */
-    align-items: flex-start;
-    max-width: 100%; /* Ensure messages don’t exceed container width */
-  }
-  
-  .message.bot {
-    justify-content: flex-start;
-  }
-  
-  .message.user {
-    justify-content: flex-end;
-  }
-  
-  .message-avatar {
-    width: 30px; /* Smaller width for message avatars */
-    height: 30px; /* Smaller height for message avatars */
-    border-radius: 50%;
-    margin-right: 15px; /* Increased margin for better spacing */
-    object-fit: contain; /* Maintain aspect ratio, fit within the circle without stretching */
-    object-position: center; /* Center the image within the circle */
-  }
-  
-  .message-content {
-    max-width: 75%; /* Slightly wider for a larger look, but capped to prevent overflow */
-    padding: 15px 15px; /* Increased padding for more space */
-    border-radius: 12px; /* Slightly larger radius */
-    font-size: 15px; /* Slightly larger text */
-    word-wrap: break-word; /* Break long words to prevent overflow */
-    overflow-wrap: break-word; /* Ensure text wraps properly */
-    white-space: normal; /* Prevent text from staying on one line */
-    max-height: 150px; /* Limit height to prevent excessive growth, with scrolling if needed */
-    overflow-y: auto; /* Allow scrolling within message content if text is very long */
-  }
-  
-  .message.bot .message-content {
-    background: #e3f2fd; /* Light blue for bot messages */
-    color: #333;
-  }
-  
-  .message.user .message-content {
-    background: #4CAF50; /* Green for user messages */
-    color: white;
-  }
-  
-  .message-time {
-    display: block;
-    font-size: 12px; /* Slightly larger time text */
-    color: #666;
-    margin-top: 5px;
-  }
-  
-  .previous-messages {
-    background: none;
-    border: none;
-    font-size: 14px; /* Slightly larger text */
-    color: #666;
-    cursor: pointer;
-    padding: 12px; /* Larger padding */
-    text-align: center;
-    width: 100%;
-    display: block;
-    margin-top: 15px; /* Larger margin */
-  }
-  
-  .previous-messages:hover {
-    color: #4CAF50;
-  }
-  
-  .chat-input {
-    display: flex;
-    padding: 15px; /* Larger padding */
-    background: white;
-    border-top: 2px solid #eee; /* Slightly thicker border */
-  }
-  
-  .message-input {
-    flex: 1;
-    padding: 12px; /* Larger padding */
-    border: none;
-    border-radius: 25px; /* Slightly larger radius */
-    font-size: 15px; /* Slightly larger text */
-    background: #f0f0f0;
-    outline: none;
-  }
-  
-  .send-btn {
-    background: none;
-    border: none;
-    font-size: 24px; /* Larger send icon (matches original emoji size) */
-    color: #666;
-    cursor: pointer;
-    margin-left: 15px; /* Larger margin */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .send-btn:hover {
-    color: #4CAF50;
-  }
-  
-  .send-btn:disabled {
-    color: #999; /* Dimmed color when disabled */
-    cursor: not-allowed;
-  }
-  
-  .powered-by {
-    font-size: 12px; /* Slightly larger text */
-    color: #666;
-    text-align: center;
-    padding: 8px; /* Larger padding */
-    background: #f0f0f0;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .chatbot-container {
-      top: 200px; /* Increased from 15px to lower the chatbot on mobile, avoiding navbar overlap */
-      right: 15px; /* Slightly more space on mobile */
-      z-index: 900; /* Lowered z-index to ensure navbar (z-index: 1000) and hamburger (z-index: 1001) are above */
-    }
-  
-    .chat-window {
-      width: 300px; /* Slightly smaller but still larger than original */
-      top: 1px; /* Adjusted to accommodate the lowered toggle button */
-    }
-  
-    .chat-messages {
-      height: 450px; /* Increased height on mobile to prevent overlap */
-      padding: 15px; /* Adjusted padding */
-    }
-  
-    .chat-toggle {
-      width: 50px; /* Slightly smaller on mobile */
-      height: 50px; /* Slightly smaller on mobile */
-      padding: 10px; /* Adjusted padding */
-      font-size: 20px; /* Slightly smaller icon */
-    }
-  
-    .chat-toggle:hover {
-      transform: scale(1.1);
-    }
-  
-    .avatar {
-      width: 35px; /* Slightly smaller on mobile */
-      height: 35px; /* Slightly smaller on mobile */
-    }
-  
-    .message-avatar {
-      width: 25px; /* Smaller message avatars on mobile */
-      height: 25px; /* Smaller message avatars on mobile */
-    }
-  
-    .message-content {
-      max-width: 70%; /* Slightly narrower on mobile */
-      padding: 10px; /* Adjusted padding */
-      font-size: 14px; /* Slightly smaller text */
-      max-height: 120px; /* Reduced max-height on mobile */
-    }
-  
-    .message-time {
-      font-size: 10px; /* Slightly smaller time text */
-    }
-  
-    .previous-messages {
-      font-size: 12px; /* Slightly smaller text */
-      padding: 10px; /* Adjusted padding */
-      margin-top: 10px; /* Adjusted margin */
-    }
-  
-    .message-input {
-      padding: 10px; /* Adjusted padding */
-      font-size: 14px; /* Slightly smaller text */
-    }
-  
-    .send-btn {
-      font-size: 20px; /* Slightly smaller send icon */
-      margin-left: 10px; /* Adjusted margin */
-    }
-  
-    .powered-by {
-      font-size: 10px; /* Slightly smaller text */
-      padding: 5px; /* Adjusted padding */
-    }
-  }
+}

@@ -77,8 +77,8 @@ body {
 
 .nav-links.desktop {
   display: flex;
-  gap: 15px; /* Decreased from 30px for tighter spacing */
-  font-size: 16px; /* Decreased from 18px for smaller text */
+  gap: 15px; /* Keep tighter spacing */
+  font-size: 16px; /* Keep smaller text */
   font-weight: 500; /* Keep medium weight */
   margin-left: auto;
   margin-right: 25px;
@@ -99,20 +99,37 @@ body {
   backdrop-filter: blur(10px); /* Keep blur effect */
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Decreased from 20px for tighter spacing */
+  gap: 15px; /* Keep tighter spacing */
+}
+
+.nav-links.top {
+  position: fixed;
+  top: -300px; /* Start above the viewport for top slide */
+  left: 0;
+  width: 100%;
+  height: auto;
+  background: rgba(255, 255, 255, 0.95); /* Keep semi-transparent white */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  padding: 20px 40px; /* Match navbar padding */
+  z-index: 999;
+  border-radius: 0 0 20px 20px; /* Rounded bottom corners for modern look */
+  backdrop-filter: blur(10px); /* Keep blur effect */
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Keep tighter spacing */
 }
 
 .nav-item {
   display: flex;
   align-items: center;
-  gap: 8px; /* Decreased from 12px for tighter spacing between icon and text */
+  gap: 8px; /* Keep tighter spacing between icon and text */
   color: #0c3f6c;
   text-decoration: none;
   margin-right: 10px;
-  font-size: 14px; /* Decreased from 16px for smaller text in mobile */
+  font-size: 14px; /* Keep smaller text in mobile */
   font-weight: 600; /* Keep bold for emphasis */
   text-transform: uppercase; /* Keep uppercase */
-  padding: 10px 14px; /* Decreased padding for smaller size */
+  padding: 10px 14px; /* Keep smaller size */
   transition: color 0.3s ease, transform 0.3s ease;
   border-radius: 8px; /* Keep subtle rounding */
 }
@@ -135,7 +152,7 @@ body {
   gap: 6px;
   width: 40px; /* Keep larger hamburger */
   height: 30px;
-  margin-right: 20px;
+  margin-right: 40px; /* Keep increased margin for more space on the right */
   position: relative;
   z-index: 1001;
 }
@@ -181,6 +198,53 @@ body {
 
   .logo-img {
     width: 250px; /* Keep slightly smaller logo on mobile */
+  }
+}
+
+/* New Media Query for 781px to 1076px */
+@media (min-width: 781px) and (max-width: 1076px) {
+  .hamburger {
+    display: flex; /* Show hamburger menu */
+  }
+
+  .nav-links.desktop {
+    display: none; /* Hide desktop links */
+  }
+
+  .nav-links.top {
+    top: 0; /* Ensure top menu slides down to top when open */
+    margin-top: 60px; /* Position below navbar */
+  }
+
+  .navbar {
+    padding: 16px 20px; /* Slightly reduced padding for this range */
+  }
+
+  .logo-img {
+    width: 250px; /* Slightly smaller logo to fit better */
+  }
+}
+
+/* Ensure desktop behavior above 1076px */
+@media (min-width: 1077px) {
+  .hamburger {
+    display: none; /* Hide hamburger on larger screens */
+  }
+
+  .nav-links.desktop {
+    display: flex; /* Show desktop links */
+  }
+
+  .nav-links.mobile, .nav-links.top {
+    top: -300px; /* Hide mobile/top menu by default (off-screen) */
+  }
+
+  .navbar {
+    padding: 16px 40px; /* Restore desktop padding */
+  }
+
+  .logo-img {
+    width: 300px; /* Restore full logo size */
   }
 }
 

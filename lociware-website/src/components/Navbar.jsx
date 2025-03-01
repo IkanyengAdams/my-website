@@ -30,6 +30,17 @@ export default function Navbar({ navbarRef, infoRef, servicesRef, safetyRef, con
     closeMenu();
   }, [location]);
 
+  // Use window width to determine menu type (for simplicity; consider a custom hook for production)
+  const getMenuClass = () => {
+    const width = window.innerWidth;
+    if (width >= 781 && width <= 1076) {
+      return 'top';
+    } else if (width < 781) {
+      return 'mobile';
+    }
+    return 'desktop'; // Not used here but for clarity
+  };
+
   return (
     <nav className="navbar">
       <div className="logo" onClick={() => scrollToSection(navbarRef)}>
@@ -46,10 +57,10 @@ export default function Navbar({ navbarRef, infoRef, servicesRef, safetyRef, con
         {isMenuOpen && (
           <motion.ul
             key="menu"
-            className="nav-links mobile"
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
+            className={`nav-links ${getMenuClass()}`}
+            initial={{ y: "-100%" }} // Top slide for both mobile and top menus
+            animate={{ y: 0 }}
+            exit={{ y: "-100%" }}
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
           >
             <li>
