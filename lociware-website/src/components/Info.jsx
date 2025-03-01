@@ -8,47 +8,46 @@ export default function Info() {
       {/* About Us Title */}
       <h2 className="info-title">About Us</h2>
 
-   {/* New Section: Who We Are, What We Do, How We Do It */}
-<div className="about-container">
-  <motion.div 
-    className="about-card" 
-    initial={{ opacity: 0 }} 
-    animate={{ opacity: 1 }} 
-    transition={{ duration: 1 }}
-  >
-    <FaUserTie className="icon" />
-    <h3>Who We Are</h3>
-    <p>Lociware is a Professional, Reliable Black-Owned & Managed Shuttle and Chauffeur Service Provider. We are Health, Safety, Security, and Environment (HSSE) Driven.</p>
-  </motion.div>
+      <div className="about-wrapper">
+  <div className="about-container">
+    <motion.div 
+      className="about-card" 
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      transition={{ duration: 1 }}
+    >
+      <FaUserTie className="icon" />
+      <h3>Who We Are</h3>
+      <p>Lociware is a Professional, Reliable Black-Owned & Managed Shuttle and Chauffeur Service Provider. We are Health, Safety, Security, and Environment (HSSE) Driven.</p>
+    </motion.div>
 
-  <motion.div 
-    className="about-card" 
-    initial={{ opacity: 0 }} 
-    animate={{ opacity: 1 }} 
-    transition={{ duration: 1 }}
-  >
-    <FaCog className="icon" />
-    <h3>What We Do</h3>
-    <p>We provide safe, reliable, efficient, and customized passenger transfers (to and from airports, conferences, meetings, homes, etc.).</p>
-  </motion.div>
+    <motion.div 
+      className="about-card" 
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      transition={{ duration: 1 }}
+    >
+      <FaCog className="icon" />
+      <h3>What We Do</h3>
+      <p>We provide safe, reliable, efficient, and customized passenger transfers (to and from airports, conferences, meetings, homes, etc.).</p>
+    </motion.div>
 
-  <motion.div 
-    className="about-card" 
-    initial={{ opacity: 0 }} 
-    animate={{ opacity: 1 }} 
-    transition={{ duration: 1 }}
-  >
-    <FaUserShield className="icon" />
-    <h3>How We Do It</h3>
-    <p>The "Live" In-Vehicle Monitoring System (IVMS) allows us to monitor the vehicles' movements and locations.</p>
-    <p>We have a trained, dedicated, incentivized, well-rested, and professional workforce centered around a safety culture.</p>
-    <p>Our vehicles are regularly maintained under our fleet management process.</p>
-  </motion.div>
+    <motion.div 
+      className="about-card" 
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      transition={{ duration: 1 }}
+    >
+      <FaUserShield className="icon" />
+      <h3>How We Do It</h3>
+      <p>The "Live" In-Vehicle Monitoring System (IVMS) allows us to monitor the vehicles' movements and locations.</p>
+      <p>We have a trained, dedicated, incentivized, well-rested, and professional workforce centered around a safety culture.</p>
+      <p>Our vehicles are regularly maintained under our fleet management process.</p>
+    </motion.div>
+  </div>
 </div>
 
-      
-
-      {/* Image Cards Section */}
+{/* Image Cards Section */}
       <div className="info-cards">
         <div className="info-card">
           <img src="/car-image.jpg" alt="A picture of a car" />

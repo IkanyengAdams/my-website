@@ -905,6 +905,46 @@ p {
   }
 }
 
+@media (min-width: 769px) and (max-width: 1639px) {
+  .about-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .about-container {
+    display: flex;
+    flex-direction: column; /* Stack cards vertically */
+    justify-content: center;
+    align-items: center;
+    gap: 30px; /* Maintain spacing */
+    max-width: 1400px;
+    width: 100%;
+  }
+  
+  .about-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 90%; /* Use percentage for responsiveness */
+    max-width: 1000px; /* Large cards but not too wide */
+    min-width: 600px; /* Prevents them from being too small */
+    margin: 0 auto; /* Centers the cards automatically */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+
+
+
+
 .footer {
   background-color: #1c1f26; /* A modern dark-blue shade */
   color: white;
