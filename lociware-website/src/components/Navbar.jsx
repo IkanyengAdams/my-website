@@ -84,9 +84,9 @@ export default function Navbar({ navbarRef, infoRef, servicesRef, safetyRef, con
               </span>
             </li>
             <li>
-              <span onClick={() => scrollToSection(safetyRef)} className="nav-item">
-                <i className="fas fa-shield-alt"></i> SAFETY
-              </span>
+              <a href="https://www.instagram.com/lociware.shuttles/#" className="nav-item">
+                <i className="fas fa-shield-alt"></i> CSI
+              </a>
             </li>
             <li>
               <a href="#" className="nav-item">
@@ -136,13 +136,13 @@ export default function Navbar({ navbarRef, infoRef, servicesRef, safetyRef, con
           </motion.span>
         </li>
         <li>
-          <motion.span 
+          <motion.a 
             whileHover={{ scale: 1.1, color: '#4CAF50' }}
-            onClick={() => scrollToSection(safetyRef)}
+            href="https://www.instagram.com/lociware.shuttles/#"
             className="nav-item"
           >
-            <i className="fas fa-shield-alt"></i> Safety
-          </motion.span>
+            <i className="fas fa-shield-alt"></i> CSI
+          </motion.a>
         </li>
         <li>
           <motion.a 
