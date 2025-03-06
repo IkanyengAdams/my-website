@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaPhoneAlt, FaMapMarkerAlt, FaRegClock } from 'react-icons/fa';
 
@@ -14,28 +14,57 @@ const Contact = () => {
   const [captchaAnswer, setCaptchaAnswer] = useState('');
   const [error, setError] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [captcha, setCaptcha] = useState({ num1: 0, num2: 0, id: '' });
 
-  // Handle form input changes
+  // Fetch CAPTCHA from backend on mount
+  useEffect(() => {
+    fetchCaptcha();
+  }, []);
+
+  const fetchCaptcha = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/api/captcha');
+      const data = await response.json();
+      setCaptcha(data);
+    } catch (err) {
+      console.error('Error fetching CAPTCHA:', err);
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle CAPTCHA and form submission (simplified for demo)
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const correctCaptcha = 15; // 5 + 10 = 15
-    if (parseInt(captchaAnswer) !== correctCaptcha) {
-      setError('Incorrect CAPTCHA. Please try again.');
-      return;
-    }
     setError('');
-    setIsSubmitted(true);
-    // Here you would typically send the form data to a backend
-    console.log('Form submitted:', formData);
-    // Reset form
-    setFormData({ name: '', email: '', phone: '', option: '', message: '' });
-    setCaptchaAnswer('');
+    try {
+      const response = await fetch('http://localhost:5000/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...formData, captchaAnswer, captchaId: btoa(JSON.stringify({ num1: captcha.num1, num2: captcha.num2 })) }), // Encode CAPTCHA numbers
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to send email');
+      }
+
+      const result = await response.json();
+      console.log(result.message);
+      setIsSubmitted(true);
+
+      // Reset form and fetch new CAPTCHA
+      setFormData({ name: '', email: '', phone: '', option: '', message: '' });
+      setCaptchaAnswer('');
+      fetchCaptcha();
+    } catch (err) {
+      console.error('Error:', err);
+      setError(err.message);
+    }
   };
 
   return (
@@ -52,7 +81,6 @@ const Contact = () => {
           Your inquiries find a swift response through our contacts section. We’re just a message or call away, ready to assist with any queries or assistance you may need. Experience personalized and attentive service at your fingertips.
         </p>
         <div className="contact-container">
-          {/* Left Column - Contact Information */}
           <div className="contact-info">
             <div className="contact-column">
               <div className="contact-item">
@@ -87,7 +115,6 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Map Image - Clickable */}
             <motion.div 
               className="contact-map"
               initial={{ opacity: 0, y: 50 }} 
@@ -103,11 +130,9 @@ const Contact = () => {
               </a>
             </motion.div>
 
-            {/* "CONNECT WITH US" title for small screens only */}
             <h3 className="connect-title mobile-only">CONNECT WITH US</h3>
           </div>
 
-          {/* Right Column - Contact Form */}
           <div className="contact-form-container">
             <form onSubmit={handleSubmit} className="contact-form">
               <input
@@ -158,7 +183,7 @@ const Contact = () => {
                 required
               />
               <div className="captcha">
-                <span>5 + 10 = </span>
+                <span>{captcha.num1} + {captcha.num2} = </span>
                 <input
                   type="number"
                   value={captchaAnswer}
