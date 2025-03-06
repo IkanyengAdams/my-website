@@ -84,10 +84,15 @@ export default function Navbar({ navbarRef, infoRef, servicesRef, safetyRef, con
               </span>
             </li>
             <li>
-              <a href="https://www.instagram.com/lociware.shuttles/#" className="nav-item">
-                <i className="fas fa-shield-alt"></i> CSI
-              </a>
-            </li>
+  <a
+    href="https://www.instagram.com/lociware.shuttles/#"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="nav-item"
+  >
+    <i className="fas fa-shield-alt"></i> CSI
+  </a>
+</li>
             <li>
               <a href="#" className="nav-item">
                 <i className="fas fa-newspaper"></i> NEWS
