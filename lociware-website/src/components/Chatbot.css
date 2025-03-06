@@ -1,8 +1,8 @@
 .chatbot-container {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
+  bottom: 20px; /* Default bottom position */
+  right: 20px; /* Default right position */
+  z-index: 900; /* Below navbar (z-index: 1000) and hamburger */
 }
 
 .chat-toggle {
@@ -20,6 +20,7 @@
   align-items: center;
   width: 60px; /* Fixed width for larger icon button */
   height: 60px; /* Fixed height for larger icon button */
+  position: fixed; /* Fixed to viewport */
 }
 
 .chat-toggle:hover {
@@ -31,10 +32,9 @@
   background: white;
   border-radius: 15px; /* Slightly larger radius for a bigger look */
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Larger shadow for emphasis */
-  margin-right: 60px;
-  position: absolute;
-  bottom: 80px; /* Adjusted to accommodate larger toggle button */
-  right: 0;
+  position: fixed; /* Fixed for consistent positioning */
+  bottom: 90px; /* Above toggle button */
+  right: 20px; /* Align with toggle */
   transform: translateX(300px);
   opacity: 0;
   overflow: hidden;
@@ -100,7 +100,7 @@
 
 .chat-messages {
   padding: 20px; /* Larger padding for more space */
-  height: 500px; /* Increased height to prevent text overlap for more messages */
+  height: 200px; /* Increased height to prevent text overlap for more messages */
   overflow-y: auto; /* Ensure scrolling for long or many messages */
   background: #f9f9f9;
 }
@@ -222,32 +222,32 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+
+/* Mobile: <781px */
+@media (max-width: 780px) {
   .chatbot-container {
-    bottom: 60px; /* Moved lower from 20px for better visibility on mobile */
+    bottom: 15px; /* Slightly lower to avoid crowding bottom edge */
     right: 15px;
-    z-index: 900; /* Lowered z-index to ensure navbar (z-index: 1000) and hamburger (z-index: 1001) are above */
+    z-index: 900;
   }
 
   .chat-toggle {
-    bottom: 60px; /* Moved lower from 20px, matching the container */
+    bottom: 15px; /* Align with container */
     right: 15px;
-    position: fixed; /* Fixed position for mobile */
-    width: 50px; /* Slightly smaller on mobile */
-    height: 50px; /* Slightly smaller on mobile */
-    padding: 10px; /* Adjusted padding */
-    font-size: 20px; /* Slightly smaller icon */
+    width: 50px; /* Smaller for mobile */
+    height: 50px;
+    padding: 10px;
+    font-size: 20px;
   }
 
   .chat-window {
-    width: 300px; /* Slightly smaller but still larger than original */
-    top: auto; /* Remove top positioning */
-    bottom: 120px; /* Moved lower from 80px to position above the lowered toggle button */
-    right: 15px; /* Align with toggle button */
+    width: 300px; /* Smaller for mobile */
+    bottom: 75px; /* Above the toggle button */
+    right: 15px; /* Align with toggle */
   }
 
   .chat-messages {
-    height: 400px; /* Adjusted height for mobile */
+    height: 200px; /* Adjusted height for mobile */
     padding: 15px;
   }
 
@@ -296,54 +296,54 @@
   }
 }
 
-/* New Media Query for 781px to 1076px */
+/* Tablet: 781px–1076px */
 @media (min-width: 781px) and (max-width: 1076px) {
   .chatbot-container {
-    bottom: 120px; /* Move up from 20px to position above the hamburger menu */
+    bottom: 70px; /* Raised to avoid overlap with hamburger menu */
     right: 20px;
-    z-index: 900; /* Lowered z-index to ensure navbar (z-index: 1000) and hamburger (z-index: 1001) are above */
+    z-index: 900;
   }
 
   .chat-toggle {
-    bottom: 260px; /* Move up to match container, positioning above hamburger menu */
+    bottom: 70px; /* Align with container */
     right: 20px;
-    position: fixed; /* Fixed position for this screen range */
-    width: 60px; /* Keep original size for consistency */
-    height: 60px; /* Keep original size for consistency */
-    padding: 15px; /* Keep original padding */
-    font-size: 24px; /* Keep original icon size */
+    width: 60px; /* Keep full size */
+    height: 60px;
+    padding: 15px;
+    font-size: 24px;
   }
 
   .chat-window {
-    width: 400px; /* Keep original width */
-    bottom: 200px; /* Adjust to position above the raised toggle button */
-    right: 20px; /* Align with toggle button */
-    margin-right: 60px; /* Keep original margin */
+    width: 400px; /* Keep full width */
+    bottom: 140px; /* Above the toggle button, with extra space */
+    right: 20px; /* Align with toggle */
+  }
+
+  .chat-messages {
+    height: 160px; /* Keep full height */
   }
 }
 
-/* Ensure desktop behavior above 1076px */
+/* Desktop: >1076px */
 @media (min-width: 1077px) {
   .chatbot-container {
-    bottom: 20px; /* Keep original positioning for desktop */
+    bottom: 20px; /* Default desktop position */
     right: 20px;
-    z-index: 1000;
+    z-index: 900;
   }
 
   .chat-toggle {
-    bottom: 20px; /* Keep original positioning for desktop */
+    bottom: 20px; /* Default desktop position */
     right: 20px;
-    position: fixed;
-    width: 60px; /* Keep original size */
-    height: 60px; /* Keep original size */
-    padding: 15px; /* Keep original padding */
-    font-size: 24px; /* Keep original icon size */
+    width: 60px;
+    height: 60px;
+    padding: 15px;
+    font-size: 24px;
   }
 
   .chat-window {
-    width: 400px; /* Keep original width */
-    bottom: 80px; /* Keep original positioning */
-    right: 0;
-    margin-right: 60px; /* Keep original margin */
+    width: 400px;
+    bottom: 90px; /* Above the toggle button */
+    right: 20px; /* Align with toggle */
   }
 }
