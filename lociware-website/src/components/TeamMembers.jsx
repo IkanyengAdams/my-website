@@ -40,20 +40,20 @@ export default function TeamMembers() {
             <p>Accounts Manager</p>
           </div>
           <div className="team-card">
-            <img src="/Elijah_Monyela-scaled.jpg" alt="Team Member 5" className="team-image" />
-            <h3>ELIJAH MONYELA</h3>
-            <p>Team Leader</p>
-          </div>
-          <div className="team-card">
             <img src="/Mphile_Dlamini2.jpg" alt="Team Member 6" className="team-image" />
             <h3>MPHILE DLAMINI</h3>
             <p>Office Admin</p>
           </div>
+          <div className="team-card">
+          <img src="/team7.jpeg" alt="Team Member 5" className="team-image" />
+            <h3>PHUTI</h3>
+            <p>Ops Controller</p>
+          </div>
 
           <div className="team-card">
-            <img src="/team4.png" alt="Team Member 7" className="team-image" />
+            <img src="/team6.png" alt="Team Member 7" className="team-image" />
             <h3>Operational Team</h3>
-            <p>Team</p>
+            <p>Ops Controller</p>
           </div>
           <div className="team-card">
             <img src="/team5.png" alt="Team Member 8" className="team-image" />
