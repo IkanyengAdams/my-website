@@ -46,13 +46,13 @@ export default function TeamMembers() {
           </div>
           <div className="team-card">
           <img src="/team7.jpeg" alt="Team Member 5" className="team-image" />
-            <h3>PHUTI</h3>
+            <h3>NTSEWA PHUTHI</h3>
             <p>Ops Controller</p>
           </div>
 
           <div className="team-card">
             <img src="/team6.png" alt="Team Member 7" className="team-image" />
-            <h3>Operational Team</h3>
+            <h3>ERFAAN BASTRA</h3>
             <p>Ops Controller</p>
           </div>
           <div className="team-card">
