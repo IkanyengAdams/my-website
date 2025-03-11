@@ -75,7 +75,7 @@ export default function TeamMembers() {
         {showMore ? "Show Less" : "Meet the Rest of the Team"}
       </button>
 
-      {/* Branding Message */}
+      
       <p className="team-message">
         At Lociware, we pride ourselves in delivering extensive services to fulfill all of your needs with first-rate customer care.  
         By offering exceptional service with meticulous attention to detail, we have developed into a leading and trusted provider of ground transportation in South Africa.  
