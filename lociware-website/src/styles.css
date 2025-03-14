@@ -57,9 +57,6 @@ body {
   transition: transform 0.3s ease;
 }
 
-.logo:hover {
-  transform: scale(1.05);
-}
 
 .logo-img {
   width: 300px;
@@ -941,10 +938,6 @@ p {
   }
 }
 
-
-
-
-
 .footer {
   background-color: #1c1f26; /* A modern dark-blue shade */
   color: white;
@@ -993,8 +986,19 @@ p {
   padding-top: 20px;
   border-top: 1px solid #444;
   margin-top: 20px;
+  font-size: 14px; /* Slightly smaller for subtlety */
 }
 
+.developer-link {
+  color: #6fa634; /* Matches your social icon hover color for consistency */
+  text-decoration: none; /* No underline by default */
+  transition: color 0.3s ease-in-out; /* Smooth hover transition */
+}
+
+.developer-link:hover {
+  color: #ffffff; /* White on hover for contrast */
+  text-decoration: underline; /* Underline on hover for clarity */
+}
 
 /* About Us Section */
 .about-us {

@@ -42,7 +42,10 @@ export default function Footer() {
 
       {/* Bottom Section */}
       <div className="footer-bottom">
-        <p>© {new Date().getFullYear()} Shuttle Hire & Transfers. All Rights Reserved.</p>
+        <p>
+          © {new Date().getFullYear()} Shuttle Hire & Transfers. All Rights Reserved. | 
+          Developed by <a href="https://www.linkedin.com/in/ikanyengadams/" target="_blank" rel="noopener noreferrer" className="developer-link">Ikanyeng Adams</a>
+        </p>
       </div>
     </footer>
   );
