@@ -94,7 +94,7 @@ export default function Navbar({ navbarRef, infoRef, servicesRef, safetyRef, con
          </a>
           </li>
             <li>
-              <a href="https://www.blogger.com/u/1/blog/post/edit/3086750032745907895/4519733187168038557" className="nav-item">
+              <a href="https://lociware.blogspot.com/2025/03/blog-post.html" className="nav-item">
                 <i className="fas fa-newspaper"></i> NEWS
               </a>
             </li>
@@ -152,7 +152,7 @@ export default function Navbar({ navbarRef, infoRef, servicesRef, safetyRef, con
         <li>
           <motion.a 
             whileHover={{ scale: 1.1, color: '#4CAF50' }}
-            href="https://www.blogger.com/u/1/blog/post/edit/3086750032745907895/4519733187168038557"
+            href="https://lociware.blogspot.com/2025/03/blog-post.html"
             className="nav-item"
           >
             <i className="fas fa-newspaper"></i> News
