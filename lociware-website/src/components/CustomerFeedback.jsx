@@ -8,32 +8,32 @@ export default function CustomerFeedback() {
     {
       rating: 5,
       text: "Lociware has been a game changer for our business. The service is fantastic, and we’ve been able to streamline our operations significantly!",
-      author: "Jack Black",
+      author: "Matlhogonolo Letai",
     },
     {
       rating: 4,
       text: "Excellent customer service and a top-tier product! Our team loves using the platform, and the support team is always there when needed.",
-      author: "Sarah Lee",
+      author: "Khethokuhle Mere",
     },
     {
       rating: 4,
       text: "Using Lociware's service has improved our daily operations. I couldn't imagine working without it anymore!",
-      author: "Michael Scott",
+      author: "Ellen Xabashe",
     },
     {
       rating: 5,
-      text: "The platform is user-friendly, and the team is very responsive to any requests we have. Very satisfied with the experience!",
-      author: "Angela Martin",
+      text: "The transportation is user-friendly, and the team is very responsive to any requests we have. Very satisfied with the experience!",
+      author: "Mazwi Zulu",
     },
     {
       rating: 4,
-      text: "Fantastic platform! It helps us stay organized and makes collaboration a breeze. I highly recommend it!",
-      author: "Dwight Schrute",
+      text: "Fantastic Service! It helps us stay organized and makes collaboration a breeze. I highly recommend it!",
+      author: "Koketso Mashudu",
     },
     {
       rating: 4,
       text: "Great product! It has simplified our workflows, and the customer support team is always available to assist.",
-      author: "Jim Halpert",
+      author: "Joseph Masilo",
     },
   ];
 

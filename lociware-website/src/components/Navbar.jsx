@@ -84,17 +84,17 @@ export default function Navbar({ navbarRef, infoRef, servicesRef, safetyRef, con
               </span>
             </li>
             <li>
-  <a
-    href="https://www.instagram.com/lociware.shuttles/#"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="nav-item"
-  >
-    <i className="fas fa-shield-alt"></i> CSI
-  </a>
-</li>
+          <a
+            href="https://www.instagram.com/lociware.shuttles/#"
+           target="_blank"
+           rel="noopener noreferrer"
+           className="nav-item"
+         >
+          <i className="fas fa-shield-alt"></i> CSI
+         </a>
+          </li>
             <li>
-              <a href="#" className="nav-item">
+              <a href="https://www.blogger.com/u/1/blog/post/edit/3086750032745907895/4519733187168038557" className="nav-item">
                 <i className="fas fa-newspaper"></i> NEWS
               </a>
             </li>
@@ -152,7 +152,7 @@ export default function Navbar({ navbarRef, infoRef, servicesRef, safetyRef, con
         <li>
           <motion.a 
             whileHover={{ scale: 1.1, color: '#4CAF50' }}
-            href="#"
+            href="https://www.blogger.com/u/1/blog/post/edit/3086750032745907895/4519733187168038557"
             className="nav-item"
           >
             <i className="fas fa-newspaper"></i> News
