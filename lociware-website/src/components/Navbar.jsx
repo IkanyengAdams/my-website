@@ -30,7 +30,7 @@ export default function Navbar({ navbarRef, infoRef, servicesRef, safetyRef, con
     closeMenu();
   }, [location]);
 
-  // Use window width to determine menu type (for simplicity; consider a custom hook for production)
+  // Use window width to determine menu type
   const getMenuClass = () => {
     const width = window.innerWidth;
     if (width >= 781 && width <= 1076) {
@@ -58,7 +58,7 @@ export default function Navbar({ navbarRef, infoRef, servicesRef, safetyRef, con
           <motion.ul
             key="menu"
             className={`nav-links ${getMenuClass()}`}
-            initial={{ y: "-100%" }} // Top slide for both mobile and top menus
+            initial={{ y: "-100%" }}
             animate={{ y: 0 }}
             exit={{ y: "-100%" }}
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
@@ -84,17 +84,22 @@ export default function Navbar({ navbarRef, infoRef, servicesRef, safetyRef, con
               </span>
             </li>
             <li>
-          <a
-            href="https://www.instagram.com/lociware.shuttles/#"
-           target="_blank"
-           rel="noopener noreferrer"
-           className="nav-item"
-         >
-          <i className="fas fa-shield-alt"></i> CSI
-         </a>
-          </li>
+              <a
+                href="https://www.instagram.com/lociware.shuttles/#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-item"
+              >
+                <i className="fas fa-shield-alt"></i> CSI
+              </a>
+            </li>
             <li>
-              <a href="https://lociware.blogspot.com/2025/03/blog-post.html" className="nav-item">
+              <a
+                href="https://lociware.blogspot.com/2025/03/blog-post.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-item"
+              >
                 <i className="fas fa-newspaper"></i> NEWS
               </a>
             </li>
@@ -144,6 +149,8 @@ export default function Navbar({ navbarRef, infoRef, servicesRef, safetyRef, con
           <motion.a 
             whileHover={{ scale: 1.1, color: '#4CAF50' }}
             href="https://www.instagram.com/lociware.shuttles/#"
+            target="_blank"
+            rel="noopener noreferrer"
             className="nav-item"
           >
             <i className="fas fa-shield-alt"></i> CSI
@@ -153,6 +160,8 @@ export default function Navbar({ navbarRef, infoRef, servicesRef, safetyRef, con
           <motion.a 
             whileHover={{ scale: 1.1, color: '#4CAF50' }}
             href="https://lociware.blogspot.com/2025/03/blog-post.html"
+            target="_blank"
+            rel="noopener noreferrer"
             className="nav-item"
           >
             <i className="fas fa-newspaper"></i> News

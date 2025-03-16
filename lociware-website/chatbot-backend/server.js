@@ -34,7 +34,7 @@ app.post('/api/chat', async (req, res) => {
 
     switch (session.step) {
       case 'greeting':
-        response.text = 'Hi there 👋 We typically reply within a few minutes.';
+        response.text = 'Hi there 👋 We typically reply within a few minutes. do you want some assistance?';
         response.buttons = [
           { text: 'Yes, please!', value: 'yes' },
           { text: 'No, thanks.', value: 'no' },
@@ -79,11 +79,11 @@ app.post('/api/chat', async (req, res) => {
         session.data.service = message;
         response.text = `Thank you, ${session.data.name}! We’ve received your details:\n- Name: ${session.data.name}\n- Phone: ${session.data.phone}\n- Email: ${session.data.email}\n- Service: ${message}. We’ll get back to you soon! 😊`;
         session.step = 'end';
-        // Optional: Send email to info@lociware.co.za
+        // Optional: Send email to Infoshare@lociware.co.za
         const mailOptions = {
-          from: '"Lociware Info" <info@lociware.co.za>',
-          to: 'info@lociware.co.za',
-          replyTo: 'info@lociware.co.za',
+          from: '"Lociware Info" <Infoshare@lociware.co.za>',
+          to: 'Infoshare@lociware.co.za',
+          replyTo: 'Infoshare@lociware.co.za',
           subject: `New Chat Submission from ${session.data.name}`,
           text: `
             Name: ${session.data.name}
@@ -150,9 +150,9 @@ app.post('/api/send-email', async (req, res) => {
     }
 
     const mailOptions = {
-      from: '"Lociware Info" <info@lociware.co.za>',
-      to: 'info@lociware.co.za',
-      replyTo: 'info@lociware.co.za',
+      from: '"Lociware Info" <Infoshare@lociware.co.za>',
+      to: 'Infoshare@lociware.co.za',
+      replyTo: 'Infoshare@lociware.co.za',
       subject: `New Contact Form Submission: ${option}`,
       text: `
         Name: ${name}
