@@ -1,185 +1,207 @@
-const express = require('express');
-const cors = require('cors');
-const { GoogleGenerativeAI } = require('@google/generative-ai');
-const nodemailer = require('nodemailer');
-const rateLimit = require('express-rate-limit');
-require('dotenv').config();
+import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import './Chatbot.css';
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+const Chatbot = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState([]);
+  const [userMessage, setUserMessage] = useState('');
+  const [currentStep, setCurrentStep] = useState('greeting'); // State machine for steps
+  const [userData, setUserData] = useState({}); // Store user input
+  const messagesEndRef = useRef(null);
 
-// In-memory session storage for chatbot (replace with database for production)
-const sessions = {};
+  // Auto-scroll to the bottom
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
-// Rate limiting
-const limiter = rateLimit({
-  windowMs: 1 * 60 * 1000, // 1 minute
-  max: 10, // 10 requests per minute per IP
-  message: 'Too many requests from this IP, please try again later.',
-});
-app.use('/api/send-email', limiter);
+  useEffect(() => {
+    scrollToBottom();
+    // Initial greeting message
+    if (messages.length === 0) {
+      setMessages([
+        {
+          id: 1,
+          text: 'Hi there 👋 We typically reply within a few minutes. Do you want some assistance?',
+          sender: 'bot',
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          avatar: '/lociware_logo2.png',
+          buttons: [
+            { text: 'Yes, please!', value: 'yes' },
+            { text: 'No, thanks.', value: 'no' },
+          ],
+        },
+      ]);
+    }
+  }, [messages.length]);
 
-// Configure Gemini API
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+  const toggleChat = () => setIsOpen(!isOpen);
 
-// Chatbot endpoint with structured flow
-app.post('/api/chat', async (req, res) => {
-  const { message, sessionId } = req.body;
-  let session = sessions[sessionId] || { step: 'greeting', data: {} };
+  const handleSendMessage = (e) => {
+    e.preventDefault();
+    if (!userMessage.trim()) return;
 
-  try {
-    let response = { text: '', buttons: [] };
+    const newUserMessage = {
+      id: messages.length + 1,
+      text: userMessage,
+      sender: 'user',
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+    };
+    setMessages((prevMessages) => [...prevMessages, newUserMessage]);
+    setUserMessage('');
+    handleChatFlow(userMessage);
+  };
 
-    switch (session.step) {
+  const handleButtonClick = (value) => {
+    const buttonMessage = {
+      id: messages.length + 1,
+      text: value,
+      sender: 'user',
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+    };
+    setMessages((prevMessages) => [...prevMessages, buttonMessage]);
+    handleChatFlow(value);
+  };
+
+  const handleChatFlow = (input) => {
+    let newMessage = { id: messages.length + 1, sender: 'bot', time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), avatar: '/lociware_logo2.png' };
+    let buttons = [];
+
+    switch (currentStep) {
       case 'greeting':
-        response.text = 'Hi there 👋 We typically reply within a few minutes. do you want some assistance?';
-        response.buttons = [
-          { text: 'Yes, please!', value: 'yes' },
-          { text: 'No, thanks.', value: 'no' },
-        ];
-        session.step = 'initial_question';
-        break;
-
-      case 'initial_question':
-        if (message === 'yes') {
-          response.text = 'Great! In that case, let’s get your contact information. Please provide us with your name?';
-          session.step = 'ask_name';
-        } else if (message === 'no') {
-          response.text = 'Okay, feel free to reach out if you need assistance later! 😊';
-          session.step = 'end';
+        if (input === 'yes' || input.toLowerCase() === 'yes, please!') {
+          newMessage.text = 'Great! In that case, let’s get your contact information. Please provide us with your name?';
+          setCurrentStep('ask_name');
+        } else if (input === 'no' || input.toLowerCase() === 'no, thanks.') {
+          newMessage.text = 'Okay, feel free to reach out if you need assistance later! 😊';
+          setCurrentStep('end');
         }
         break;
 
       case 'ask_name':
-        session.data.name = message;
-        response.text = `Few more things! What is your phone number, ${session.data.name}? 😊`;
-        session.step = 'ask_phone';
+        userData.name = input;
+        newMessage.text = `Few more things! What is your phone number, ${userData.name}? 😊`;
+        setCurrentStep('ask_phone');
         break;
 
       case 'ask_phone':
-        session.data.phone = message;
-        response.text = `Great! Please provide us with your email address, ${session.data.name}? 😊`;
-        session.step = 'ask_email';
+        userData.phone = input;
+        newMessage.text = `Great! Please provide us with your email address, ${userData.name}? 😊`;
+        setCurrentStep('ask_email');
         break;
 
       case 'ask_email':
-        session.data.email = message;
-        response.text = `Great! Let’s find out how we can help you, ${session.data.name}. 😊 Please mention the service(s) you require, or click the options listed:`;
-        response.buttons = [
+        userData.email = input;
+        newMessage.text = `Great! Let’s find out how we can help you, ${userData.name}. 😊 Please mention the service(s) you require, or click the options listed:`;
+        buttons = [
           { text: '1. General Inquiry', value: 'general_inquiry' },
           { text: '2. Booking Request', value: 'booking_request' },
           { text: '3. Support', value: 'support' },
         ];
-        session.step = 'ask_service';
+        setCurrentStep('ask_service');
         break;
 
       case 'ask_service':
-        session.data.service = message;
-        response.text = `Thank you, ${session.data.name}! We’ve received your details:\n- Name: ${session.data.name}\n- Phone: ${session.data.phone}\n- Email: ${session.data.email}\n- Service: ${message}. We’ll get back to you soon! 😊`;
-        session.step = 'end';
-        // Optional: Send email to Infoshare@lociware.co.za
-        const mailOptions = {
-          from: '"Lociware Info" <Infoshare@lociware.co.za>',
-          to: 'Infoshare@lociware.co.za',
-          replyTo: 'Infoshare@lociware.co.za',
-          subject: `New Chat Submission from ${session.data.name}`,
-          text: `
-            Name: ${session.data.name}
-            Phone: ${session.data.phone}
-            Email: ${session.data.email}
-            Service: ${message}
-          `,
-          html: `
-            <h3>New Chat Submission</h3>
-            <p><strong>Name:</strong> ${session.data.name}</p>
-            <p><strong>Phone:</strong> ${session.data.phone}</p>
-            <p><strong>Email:</strong> ${session.data.email}</p>
-            <p><strong>Service:</strong> ${message}</p>
-          `,
-        };
-        await transporter.sendMail(mailOptions);
+        userData.service = input;
+        newMessage.text = `Thank you, ${userData.name}! We’ve received your details:\n- Name: ${userData.name}\n- Phone: ${userData.phone}\n- Email: ${userData.email}\n- Service: ${input}. We’ll get back to you soon! 😊`;
+        setCurrentStep('end');
         break;
 
       case 'end':
-        response.text = 'If you need more help, feel free to start again! 😊';
+        newMessage.text = 'If you need more help, feel free to start again! 😊';
+        setCurrentStep('greeting'); // Reset for new conversation
         break;
 
       default:
-        response.text = 'Sorry, I didn’t understand. How can I assist you?';
-        response.buttons = [
+        newMessage.text = 'Sorry, I didn’t understand. Do you want some assistance?';
+        buttons = [
           { text: 'Yes, please!', value: 'yes' },
           { text: 'No, thanks.', value: 'no' },
         ];
-        session.step = 'initial_question';
+        setCurrentStep('greeting');
     }
 
-    sessions[sessionId] = session;
-    res.json(response);
-  } catch (error) {
-    console.error('Error generating response:', error);
-    res.status(500).json({ error: 'Failed to generate response' });
-  }
-});
+    if (buttons.length > 0) newMessage.buttons = buttons;
+    setMessages((prevMessages) => [...prevMessages, newMessage]);
+    setUserData({ ...userData }); // Update userData state
+  };
 
-// Configure Nodemailer with your Gmail
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER, // Your personal Gmail (e.g., your-personal@gmail.com)
-    pass: process.env.EMAIL_PASS, // Your Gmail app password
-  },
-});
+  return (
+    <div className="chatbot-container">
+      <motion.button
+        className="chat-toggle"
+        onClick={toggleChat}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        💬
+      </motion.button>
 
-// CAPTCHA endpoint
-app.get('/api/captcha', (req, res) => {
-  const num1 = Math.floor(Math.random() * 10) + 1;
-  const num2 = Math.floor(Math.random() * 10) + 1;
-  res.json({ num1, num2, id: Date.now() });
-});
+      <motion.div
+        className={`chat-window ${isOpen ? 'open' : ''}`}
+        initial={{ opacity: 0, x: 300 }}
+        animate={{ opacity: isOpen ? 1 : 0, x: isOpen ? 0 : 300 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="chat-header">
+          <button className="close-btn" onClick={toggleChat}>×</button>
+          <img src="/lociware_logo2.png" alt="Bot Avatar" className="avatar" />
+          <div className="header-text">
+            <h3>Hi there 👋</h3>
+            <p>We typically reply within a few minutes.</p>
+          </div>
+          <button className="options-btn">⋮</button>
+        </div>
 
-// Email endpoint
-app.post('/api/send-email', async (req, res) => {
-  const { name, email, phone, option, message, captchaAnswer, captchaId } = req.body;
+        <div className="chat-messages">
+          {messages.map((message) => (
+            <motion.div
+              key={message.id}
+              className={`message ${message.sender === 'bot' ? 'bot' : 'user'}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {message.sender === 'bot' && (
+                <img src="/lociware_logo2.png" alt="Bot Avatar" className="message-avatar" />
+              )}
+              <div className="message-content">
+                <p>{message.text}</p>
+                <span className="message-time">{message.time}</span>
+                {message.buttons && message.buttons.length > 0 && (
+                  <div className="message-buttons">
+                    {message.buttons.map((button, index) => (
+                      <button
+                        key={index}
+                        onClick={() => handleButtonClick(button.value)}
+                        className="chat-button"
+                      >
+                        {button.text}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          ))}
+          <div ref={messagesEndRef} />
+        </div>
 
-  try {
-    const { num1, num2 } = JSON.parse(Buffer.from(captchaId, 'base64').toString());
-    if (parseInt(captchaAnswer) !== num1 + num2) {
-      return res.status(400).json({ error: 'Invalid CAPTCHA' });
-    }
+        <form className="chat-input" onSubmit={handleSendMessage}>
+          <input
+            type="text"
+            placeholder="Enter your message..."
+            value={userMessage}
+            onChange={(e) => setUserMessage(e.target.value)}
+          />
+          <button type="submit" className="send-btn">
+            ✈️
+          </button>
+        </form>
+      </motion.div>
+    </div>
+  );
+};
 
-    const mailOptions = {
-      from: '"Lociware Info" <Infoshare@lociware.co.za>',
-      to: 'Infoshare@lociware.co.za',
-      replyTo: 'Infoshare@lociware.co.za',
-      subject: `New Contact Form Submission: ${option}`,
-      text: `
-        Name: ${name}
-        Email: ${email}
-        Phone: ${phone}
-        Option: ${option}
-        Message: ${message}
-      `,
-      html: `
-        <h3>New Contact Form Submission</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Option:</strong> ${option}</p>
-        <p><strong>Message:</strong> ${message}</p>
-      `,
-    };
-
-    await transporter.sendMail(mailOptions);
-    res.status(200).json({ message: 'Email sent successfully!' });
-  } catch (error) {
-    console.error('Error sending email:', error);
-    res.status(500).json({ error: 'Failed to send email' });
-  }
-});
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+export default Chatbot;
