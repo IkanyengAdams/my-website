@@ -9,18 +9,17 @@
   background: #4CAF50;
   color: white;
   border: none;
-  border-radius: 25px;
-  padding: 15px 15px;
+  border-radius: 50%;
+  padding: 15px;
   font-size: 24px;
   cursor: pointer;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 60px;
   height: 60px;
-  position: fixed;
+  transition: transform 0.3s ease;
 }
 
 .chat-toggle:hover {
@@ -55,13 +54,20 @@
   position: relative;
 }
 
-.close-btn {
+.close-btn,
+.options-btn {
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 20px;
   color: white;
   cursor: pointer;
   padding: 0 15px;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover,
+.options-btn:hover {
+  color: #45a049;
 }
 
 .avatar {
@@ -89,30 +95,22 @@
   opacity: 0.8;
 }
 
-.options-btn {
-  background: none;
-  border: none;
-  font-size: 24px;
-  color: white;
-  cursor: pointer;
-  padding: 0 15px;
-}
-
 .chat-messages {
   padding: 20px;
-  height: 300px; /* Increased height for more messages */
-  overflow-y: auto; /* Enable scrolling */
+  height: 400px;
+  overflow-y: auto;
   background: #f9f9f9;
-  scroll-behavior: smooth; /* Smooth scrolling */
+  scroll-behavior: smooth;
   display: flex;
-  flex-direction: column; /* Ensure messages stack vertically */
+  flex-direction: column;
+  gap: 20px;
 }
 
 .message {
   display: flex;
-  margin-bottom: 25px;
   align-items: flex-start;
-  max-width: 100%;
+  width: 100%;
+  margin: 0;
 }
 
 .message.bot {
@@ -123,42 +121,59 @@
   justify-content: flex-end;
 }
 
+.message-wrapper {
+  display: flex;
+  align-items: flex-start;
+  max-width: 75%;
+}
+
 .message-avatar {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  margin-right: 15px;
+  margin-right: 10px;
   object-fit: contain;
-  object-position: center;
+  flex-shrink: 0;
 }
 
 .message-content {
-  max-width: 75%;
-  padding: 15px;
+  padding: 12px 15px;
   border-radius: 12px;
   font-size: 15px;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  white-space: normal;
-  max-height: 150px;
-  overflow-y: auto;
+  white-space: pre-wrap;
+  background: #e3f2fd;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .message.bot .message-content {
   background: #e3f2fd;
   color: #333;
+  border-top-left-radius: 0;
 }
 
 .message.user .message-content {
   background: #4CAF50;
   color: white;
+  border-top-right-radius: 0;
+}
+
+.message-text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.4;
 }
 
 .message-time {
-  display: block;
   font-size: 12px;
   color: #666;
   margin-top: 5px;
+  text-align: right;
+  line-height: 1;
 }
 
 .message-buttons {
@@ -169,7 +184,7 @@
 }
 
 .chat-button {
-  background: #4CAF50; /* Green buttons */
+  background: #4CAF50;
   color: white;
   border: none;
   border-radius: 20px;
@@ -180,7 +195,7 @@
 }
 
 .chat-button:hover {
-  background: #45a049; /* Slightly darker green on hover */
+  background: #45a049;
 }
 
 .previous-messages {
@@ -239,18 +254,13 @@
 }
 
 /* Responsive Design */
-
-/* Mobile: <781px */
 @media (max-width: 780px) {
   .chatbot-container {
     bottom: 15px;
     right: 15px;
-    z-index: 900;
   }
 
   .chat-toggle {
-    bottom: 15px;
-    right: 15px;
     width: 50px;
     height: 50px;
     padding: 10px;
@@ -264,7 +274,7 @@
   }
 
   .chat-messages {
-    height: 200px;
+    height: 250px;
     padding: 15px;
   }
 
@@ -278,11 +288,17 @@
     height: 25px;
   }
 
+  .message-wrapper {
+    max-width: 70%;
+  }
+
   .message-content {
-    max-width: 65%;
     padding: 10px;
     font-size: 14px;
-    max-height: 120px;
+  }
+
+  .message-text {
+    font-size: 14px;
   }
 
   .message-time {
@@ -306,61 +322,40 @@
   }
 
   .send-btn {
-    width: 35px;
-    height: 35px;
     font-size: 18px;
     margin-left: 10px;
   }
 }
 
-/* Tablet: 781px–1076px */
 @media (min-width: 781px) and (max-width: 1076px) {
   .chatbot-container {
     bottom: 70px;
     right: 20px;
-    z-index: 900;
   }
 
   .chat-toggle {
     bottom: 70px;
     right: 20px;
-    width: 60px;
-    height: 60px;
-    padding: 15px;
-    font-size: 24px;
   }
 
   .chat-window {
-    width: 400px;
+    width: 350px;
     bottom: 140px;
-    right: 20px;
   }
 
   .chat-messages {
-    height: 250px;
+    height: 300px;
   }
 }
 
-/* Desktop: >1076px */
 @media (min-width: 1077px) {
   .chatbot-container {
     bottom: 20px;
     right: 20px;
-    z-index: 900;
-  }
-
-  .chat-toggle {
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    padding: 15px;
-    font-size: 24px;
   }
 
   .chat-window {
     width: 400px;
     bottom: 90px;
-    right: 20px;
   }
 }
