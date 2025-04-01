@@ -57,14 +57,14 @@ export default function TeamMembers() {
           </div>
           <div className="team-card">
             <img src="/team8.jpeg" alt="Team Member 8" className="team-image" />
-            <h3>Operational Team</h3>
-            <p>Team</p>
+            <h3>ROLIVHUWA MULEYA</h3>
+            <p>Finance manager</p>
             
           </div>
           <div className="team-card">
             <img src="/lociware-ops-team.jpg" alt="Team Member 9" className="team-image" />
-            <h3>ROLIVHUWA MULEYA</h3>
-            <p>Finance manager</p>
+            <h3>Operational Team</h3>
+            <p>Team</p>
             
           </div>
         </div>
